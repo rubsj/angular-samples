@@ -1,0 +1,22 @@
+<div>
+<form #myForm="ngForm">
+  <div>
+    <label >FirstName:</label>
+    <input type="text" name="firstName" ngModel>
+  </div>
+  <div>
+    <label >LastName:</label>
+    <input type="text" name="lastName" ngModel>
+  </div>
+  <div>
+    <p>address uses viewProviders approach for doing nesting</p>
+    <app-address-template></app-address-template>
+  </div>
+  <div>
+    <p>phone uses XXX approach</p>
+    <app-phone-template></app-phone-template>
+  </div>
+
+</form>
+<pre>{{myForm.value | json}}</pre>
+</div>
