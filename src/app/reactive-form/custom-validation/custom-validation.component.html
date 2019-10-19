@@ -1,0 +1,25 @@
+<h2>Custom Validation test in reactive form . Validation is for Age field</h2>
+<form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+  <div>
+    <label for="fullName">Enter Full Name</label>
+    <input type="text" formControlName="fullName" id="fullName"  placeholder="enter your name"  >
+  </div>
+  <div>
+    <label for="age">Enter Age</label>
+    <input type="text"  formControlName="age" id="age"  >
+    <div *ngIf="age.invalid && (age.dirty || age.touched)">
+      <p *ngIf="!!age.errors.required">This field is required</p>
+      <p *ngIf="!!age.errors.rjAgeValidator">Age must be between 0 yr and 130 years</p>
+      <p *ngIf="!!age.errors.onlyNumberAllowed">enter only numbers</p>
+    </div>
+
+  </div>
+
+  <br>
+  <div>
+    <button>Submit</button>
+  </div>
+
+  <pre>{{age.errors | json}}</pre>
+
+</form>

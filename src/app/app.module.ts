@@ -4,8 +4,11 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import {AppRoutingModule} from './app-routing.module';
-import {TemplateFormModule} from './template-form/template-form.module';
-import {MenuComponent} from './menu/menu.component';
+import {MenuComponent} from 'app/menu/menu.component';
+import {TemplateFormModule} from 'app/template-form/template-form.module';
+import {ReactiveFormModule} from 'app/reactive-form/reactive-form.module';
+
+
 
 
 @NgModule({
@@ -17,7 +20,8 @@ import {MenuComponent} from './menu/menu.component';
     BrowserModule,
     ReactiveFormsModule,
     AppRoutingModule,
-    TemplateFormModule
+    TemplateFormModule,
+    ReactiveFormModule
   ],
   providers: [],
   bootstrap: [AppComponent]
