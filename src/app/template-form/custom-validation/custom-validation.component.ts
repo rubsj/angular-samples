@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {NgForm} from '@angular/forms';
 
 @Component({
   selector: 'rj-tmp--custom-validation',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TemplateCustomValidationComponent implements OnInit {
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
+  }
+
+  onSubmit(form: NgForm) {
+    console.log('received form : ' , form);
   }
 
 }

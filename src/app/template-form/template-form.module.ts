@@ -7,13 +7,15 @@ import {
 import {NestedFormExample1Component} from 'app/template-form/nested-form-example1/nested-form-example1.component';
 import {AddressComponent} from 'app/template-form/nested-form-example1/address/address.component';
 import {PhoneComponent} from 'app/template-form/nested-form-example1/phone/phone.component';
+import {CustomCommonModule} from 'app/custom-common.module';
 
 
 @NgModule({
-  declarations: [NestedFormExample1Component, AddressComponent, PhoneComponent, TemplateCustomValidationComponent],
+  declarations: [NestedFormExample1Component, AddressComponent, PhoneComponent, TemplateCustomValidationComponent ],
   imports: [
     BrowserModule,
     FormsModule,
+    CustomCommonModule
   ],
 })
 export class TemplateFormModule {

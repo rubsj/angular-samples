@@ -8,8 +8,8 @@ import {TemplateCustomValidationComponent} from 'app/template-form/custom-valida
 
 const routes: Routes = [
   {path: 'templateExample1', component: NestedFormExample1Component},
-  {path: 'templateCustomVal' , component : ReactiveCustomValidationComponent},
-  {path: 'reactiveCustomVal' , component : TemplateCustomValidationComponent},
+  {path: 'templateCustomVal' , component : TemplateCustomValidationComponent},
+  {path: 'reactiveCustomVal' , component : ReactiveCustomValidationComponent},
   {path : 'menu', component: MenuComponent},
   {path: ' ', component: AppComponent, pathMatch: 'full'},
   {path : '**' , redirectTo: 'menu'}

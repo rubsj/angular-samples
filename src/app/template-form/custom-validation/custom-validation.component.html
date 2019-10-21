@@ -1,1 +1,20 @@
-<p>Tmp custom-validation works!</p>
+<h2>Custom Validation test in template driven form . Validation is for Age field</h2>
+<form #f='ngForm' (ngSubmit)="onSubmit(f)">
+  <div>
+    <label for="FullName">Enter Full Name</label>
+    <input type="text" name="FullName" id="FullName" ngModel placeholder="enter your name"  required>
+  </div>
+  <div>
+    <label for="age">Enter Age</label>
+    <input type="number" ngModel name="age" id="age"  rjAgeValidatorDirective required #age='ngModel'>
+   <div *ngIf="age?.invalid && (age?.dirty || age?.touched)">
+      <p *ngIf="age?.errors.required">This field is required</p>
+     <p *ngIf="age?.errors.rjAgeValidator">Age must be between 0 yr and 130 years</p>
+   </div>
+  </div>
+  <br>
+  <div>
+    <button [disabled]="!f.form.valid">Submit</button>
+  </div>
+
+</form>
