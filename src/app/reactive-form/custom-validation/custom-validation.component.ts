@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {ageValidator, numberOnly} from 'app/shared/age-validator-directive.directive';
+import {ageValidator, numberOnly} from 'app/shared/validators/age-validator.directive';
 
 @Component({
   selector: 'rj-rx-custom-validation',

@@ -6,7 +6,7 @@
   </div>
   <div>
     <label for="age">Enter Age</label>
-    <input type="number" ngModel name="age" id="age"  rjAgeValidatorDirective required #age='ngModel'>
+    <input type="number" ngModel name="age" id="age" rjAgeValidator required #age='ngModel'>
    <div *ngIf="age?.invalid && (age?.dirty || age?.touched)">
       <p *ngIf="age?.errors.required">This field is required</p>
      <p *ngIf="age?.errors.rjAgeValidator">Age must be between 0 yr and 130 years</p>

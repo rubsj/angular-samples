@@ -7,9 +7,11 @@ import {ReactiveCustomValidationComponent} from 'app/reactive-form/custom-valida
 import {TemplateCustomValidationComponent} from 'app/template-form/custom-validation/custom-validation.component';
 import {HttpConceptsComponent} from 'app/http-concepts/http-concepts.component';
 import {SimpleFormExample1Component} from 'app/template-form/simple-form-example1/simple-form-example1.component';
+import {RxSimpleFormExample1Component} from 'app/reactive-form/simple-form-example1/rx-simple-form-example1.component';
 
 const routes: Routes = [
   {path: 'simpleForm1', component: SimpleFormExample1Component},
+  {path: 'rxSimpleForm1', component: RxSimpleFormExample1Component},
   {path: 'templateExample1', component: NestedFormExample1Component},
   {path: 'templateCustomVal', component: TemplateCustomValidationComponent},
   {path: 'reactiveCustomVal', component: ReactiveCustomValidationComponent},

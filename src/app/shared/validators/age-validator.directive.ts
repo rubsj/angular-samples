@@ -2,10 +2,10 @@ import {Directive} from '@angular/core';
 import {AbstractControl, NG_VALIDATORS, ValidationErrors, Validator, ValidatorFn} from '@angular/forms';
 
 @Directive({
-  selector: '[rjAgeValidatorDirective]',
-  providers: [{provide: NG_VALIDATORS, useExisting: AgeValidatorDirectiveDirective, multi: true}]
+  selector: '[rjAgeValidator]',
+  providers: [{provide: NG_VALIDATORS, useExisting: AgeValidatorDirective, multi: true}]
 })
-export class AgeValidatorDirectiveDirective implements Validator {
+export class AgeValidatorDirective implements Validator {
 
   constructor() {
   }

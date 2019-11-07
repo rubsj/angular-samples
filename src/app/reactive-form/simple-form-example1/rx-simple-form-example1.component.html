@@ -1,0 +1,38 @@
+<form [formGroup]="myForm" (ngSubmit)="register()" novalidate appCountryCityValidator appTelephoneNumbersValidator>
+  <rj-show-errors [control]="myForm"></rj-show-errors>
+  <div>
+    <label>Name</label>
+    <input type="text" name="name" formControlName="name" required  >
+    <rj-show-errors [control]="myForm.controls.name"></rj-show-errors>
+  </div>
+  <div>
+    <label>Birth Year</label>
+    <input type="text" name="birthYear" formControlName="birthYear"  required pattern="\d{4,4}" rjBirthYear>
+    <rj-show-errors [control]="myForm.controls.birthYear"></rj-show-errors>
+  </div>
+  <div formGroupName="location">
+    <h3>Location</h3>
+    <div>
+      <label>Country</label>
+      <input type="text" name="country" formControlName="country">
+    </div>
+    <div>
+      <label>City</label>
+      <input type="text" name="city" formControlName="city">
+    </div>
+  </div>
+  <div formArrayName="phoneNumbers">
+    <h3>Phone Numbers</h3>
+    <div *ngFor="let phoneNumberControl of myForm.controls.phoneNumbers.controls; let i=index">
+      <label >Phone Number {{i+1}}</label>
+      <input type="text" name="phoneNumber[{{i}}]" [formControlName]="i" appTelephoneFormatValidator>
+      <rj-show-errors [control]="phoneNumberControl"></rj-show-errors>
+      <button type="button" (click)="remove(i)">remove</button>
+    </div>
+    <button type="button" (click)="add()">Add phone number</button>
+  </div>
+
+  <pre>{{myForm.value | json}}</pre>
+  <button type="submit">Register</button>
+  <button type="button" (click)="printMyForm()">Print to console</button>
+</form>

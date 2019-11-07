@@ -50,3 +50,8 @@ This is possible thanks to the `exportAs` property of the `Component` decorator.
 - The `myForm.control.markAsTouched()` is used to make the form touched so we can display the errors at that moment. **The buttons don’t activate this property when clicked**, only the inputs.
 ### Reactive Forms
 
+
+
+## Concepts to look into and create samples
+- cross validation and adding error not at form
+- implement async validator

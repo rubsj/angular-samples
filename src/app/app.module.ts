@@ -7,7 +7,7 @@ import {AppRoutingModule} from './app-routing.module';
 import {MenuComponent} from 'app/menu/menu.component';
 import {TemplateFormModule} from 'app/template-form/template-form.module';
 import {ReactiveFormModule} from 'app/reactive-form/reactive-form.module';
-import {CustomCommonModule} from 'app/custom-common.module';
+import {CustomCommonModule} from 'app/shared/custom-common.module';
 import {HttpConceptsModule} from 'app/http-concepts/http-concepts.module';
 import {CommonModule} from '@angular/common';
 

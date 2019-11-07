@@ -1,13 +1,16 @@
-<form #myForm='ngForm' (ngSubmit)="register(myForm)" novalidate>
+<form #myForm='ngForm' (ngSubmit)="register(myForm)" novalidate appCountryCityValidator appTelephoneNumbersValidator>
+  <rj-show-errors [control]="myForm"></rj-show-errors>
   <div>
     <label>Name</label>
-    <input type="text" name="name" ngModel required/>
+    <input type="text" name="name" ngModel required #name='ngModel'/>
+    <rj-show-errors [control]="name"></rj-show-errors>
   </div>
   <div>
     <label>Birth Year</label>
-    <input type="number" name="birthYear" ngModel required pattern="\d{4,4}"/>
+    <input type="number" name="birthYear" #birthYr='ngModel' ngModel required pattern="\d{4,4}" rjBirthYear/>
+    <rj-show-errors [control]="birthYr"></rj-show-errors>
   </div>
-  <div ngModelGroup="location">
+  <div ngModelGroup="location" #location='ngModelGroup'>
     <h3>Location</h3>
     <div>
       <label>Country</label>
@@ -17,15 +20,18 @@
       <label>City</label>
       <input type="text" name="city" ngModel/>
     </div>
+   <!-- <rj-show-errors [control]="location" ></rj-show-errors>-->
   </div>
-  <div ngModelGroup="phoneNumbers">
+  <div ngModelGroup="phoneNumbers" #phoneNumbers='ngModelGroup'>
     <h3>Phone Numbers</h3>
     <div *ngFor="let phoneId of phoneNumberIds; let i=index;">
       <label>Phone number {{i+1}}</label>
-      <input type="text" name="phoneNumber[{{phoneId}}]" ngModel #phoneNumber='ngModel'/>
+      <input type="text" name="phoneNumber[{{phoneId}}]" ngModel #phoneNumber='ngModel' appTelephoneFormatValidator/>
+      <rj-show-errors [control]="phoneNumber"></rj-show-errors>
       <button type="button" (click)="removePhone(i); myForm.control.markAsTouched()">remove</button>
     </div>
     <button type="button" (click)="addPhone(); myForm.control.markAsTouched()">Add phone number</button>
+
   </div>
   <div>
     <h3>Current and Past Address</h3>

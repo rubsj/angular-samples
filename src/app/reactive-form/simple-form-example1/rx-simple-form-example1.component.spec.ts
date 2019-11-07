@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SimpleFormExample1Component } from './simple-form-example1.component';
+import { RxSimpleFormExample1Component } from 'app/reactive-form/simple-form-example1/rx-simple-form-example1.component';
 
 describe('RxSimpleFormExample1Component', () => {
-  let component: SimpleFormExample1Component;
-  let fixture: ComponentFixture<SimpleFormExample1Component>;
+  let component: RxSimpleFormExample1Component;
+  let fixture: ComponentFixture<RxSimpleFormExample1Component>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SimpleFormExample1Component ]
+      declarations: [ RxSimpleFormExample1Component ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SimpleFormExample1Component);
+    fixture = TestBed.createComponent(RxSimpleFormExample1Component);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
