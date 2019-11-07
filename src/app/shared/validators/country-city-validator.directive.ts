@@ -8,8 +8,8 @@ import {FormGroup, NG_VALIDATORS, ValidationErrors} from '@angular/forms';
 export class CountryCityValidatorDirective {
 
   validate(form: FormGroup): ValidationErrors | null {
-    const countryControl = form.get('location.country');
-    const cityControl = form.get('location.city');
+    const countryControl = form.get('location.country') || form.get('country');
+    const cityControl = form.get('location.city') || form.get('city');
     let isValid = true;
     let message;
     if (countryControl != null && cityControl != null) {
