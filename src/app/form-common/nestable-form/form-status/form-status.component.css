@@ -1,0 +1,8 @@
+.form-state {
+  color:red;
+  font-weight: bold;
+}
+
+.form-state.valid {
+  color:green;
+}

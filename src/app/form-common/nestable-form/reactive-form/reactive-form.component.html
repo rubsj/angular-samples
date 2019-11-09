@@ -1,0 +1,9 @@
+<div [formGroup]="sampleForm" appNestableForm #form3="ngForm">
+  <h3>Reactive Form</h3>
+  <app-form-status formName="form-3" [isFormValid]="form3.valid"></app-form-status>
+  <input type="text" name="text3" formControlName="input3">
+  <ngForm appNestableForm #form31="ngForm" required>
+    <app-form-status formName="form-3.1" [isFormValid]="form31.valid"></app-form-status>
+    <input type="text" name="text31" ngModel required="">
+  </ngForm>
+</div>

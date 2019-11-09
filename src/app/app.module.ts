@@ -10,6 +10,7 @@ import {ReactiveFormModule} from 'app/reactive-form/reactive-form.module';
 import {CustomCommonModule} from 'app/shared/custom-common.module';
 import {HttpConceptsModule} from 'app/http-concepts/http-concepts.module';
 import {CommonModule} from '@angular/common';
+import {NestableFormModule} from 'app/form-common/nestable-form/nestable-form.module';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import {CommonModule} from '@angular/common';
     ReactiveFormModule,
     CustomCommonModule,
     HttpConceptsModule,
-    CommonModule
+    CommonModule,
+    NestableFormModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

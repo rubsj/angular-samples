@@ -15,7 +15,6 @@ import { TelephoneNumbersValidatorDirective } from 'app/shared/validators/teleph
     TelephoneNumberFormatValidatorDirective,
     CountryCityValidatorDirective,
     TelephoneNumbersValidatorDirective,
-
   ],
   imports: [
     CommonModule

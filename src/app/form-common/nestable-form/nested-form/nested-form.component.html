@@ -1,0 +1,17 @@
+<ngForm appNestableForm #form2="ngForm">
+  <app-form-status formName="form-2" [isFormValid]="form2.valid"></app-form-status>
+  <input type="text" name="text2" ngModel required>
+  <div appNestableForm ngForm #form21="ngForm">
+    <app-form-status formName="form-2.1" [isFormValid]="form21.valid"></app-form-status>
+    <input type="text" name="text21" ngModel required>
+  </div>
+  <div appNestableForm ngForm #form22="ngForm">
+    <app-form-status formName="form-2.2" [isFormValid]="form22.valid"></app-form-status>
+    <input type="text" name="text22" ngModel required>
+  </div>
+
+  <button type="button" style="margin-left : 15px" (click)="isReactiveDisabled =!isReactiveDisabled">Toggle Reactive form</button>
+  <app-reactive-form *ngIf="!isReactiveDisabled"></app-reactive-form>
+  <app-isolated-form></app-isolated-form>
+
+</ngForm>
