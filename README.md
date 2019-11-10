@@ -7,6 +7,13 @@
 - each input element must have the name attribute to be properly identified within the form.
 - `novalidate` is used to disable the browser’s native form validation
 - custom validator must implement, the `Validator` interface 
+- `NgForm` Creates a top-level `FormGroup` instance and binds it to a form to track aggregate form value and validation status.
+- As soon as you import the `FormsModule`, this directive becomes active by default on all `<form>` tags.  You don't need to add a special selector.
+- `NgForm` is automatically attached to `<form>` tags (because of the default `NgForm` selector), which means we don't have to add an `ngForm` attribute to use `NgForm`
+- any div or tag can be turned into form by adding directive `ngForm` see file `isolated-form.component.html` for sample
+- In template driven forms, all `<form>` tags are automatically tagged as `NgForm`.  To import the `FormsModule` but skip its usage in some forms,
+for example, to use native HTML5 validation, add the `ngNoForm` and the `<form>` tags won't create an `NgForm` directive. 
+- In reactive forms, using `ngNoForm` is unnecessary because the `<form>` tags are inert. In that case, you would refrain from using the `formGroup` directive.
 
 ### Template Forms
 - reference - https://www.toptal.com/angular-js/angular-4-forms-validation

@@ -9,11 +9,13 @@ import {HttpConceptsComponent} from 'app/http-concepts/http-concepts.component';
 import {SimpleFormExample1Component} from 'app/template-form/simple-form-example1/simple-form-example1.component';
 import {RxSimpleFormExample1Component} from 'app/reactive-form/simple-form-example1/rx-simple-form-example1.component';
 import {NestableFormComponent} from 'app/form-common/nestable-form/nestable-form.component';
+import {RxSimpleFormExample2Component} from 'app/reactive-form/rx-simple-form-example2/rx-simple-form-example2.component';
 
 const routes: Routes = [
   {path : 'nestableFormDirectiveExample', component : NestableFormComponent},
   {path: 'simpleForm1', component: SimpleFormExample1Component},
   {path: 'rxSimpleForm1', component: RxSimpleFormExample1Component},
+  {path: 'rxSimpleForm2', component: RxSimpleFormExample2Component},
   {path: 'templateExample1', component: NestedFormExample1Component},
   {path: 'templateCustomVal', component: TemplateCustomValidationComponent},
   {path: 'reactiveCustomVal', component: ReactiveCustomValidationComponent},

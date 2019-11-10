@@ -1,4 +1,4 @@
-<ngForm appNestableForm #form2="ngForm">
+<ng-form appNestableForm #form2="ngForm">
   <app-form-status formName="form-2" [isFormValid]="form2.valid"></app-form-status>
   <input type="text" name="text2" ngModel required>
   <div appNestableForm ngForm #form21="ngForm">
@@ -14,4 +14,4 @@
   <app-reactive-form *ngIf="!isReactiveDisabled"></app-reactive-form>
   <app-isolated-form></app-isolated-form>
 
-</ngForm>
+</ng-form>

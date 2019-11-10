@@ -1,3 +1,4 @@
+<p>Simple form example uses new FormGroup() approach to build the form and formControlName to refer to the control</p>
 <form [formGroup]="myForm" (ngSubmit)="register()" novalidate appCountryCityValidator appTelephoneNumbersValidator>
   <rj-show-errors [control]="myForm"></rj-show-errors>
   <div>

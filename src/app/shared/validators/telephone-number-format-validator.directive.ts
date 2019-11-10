@@ -18,3 +18,13 @@ export class TelephoneNumberFormatValidatorDirective implements Validator {
   }
 
 }
+
+export function telephoneNumberFormatValidator(control: FormControl): ValidationErrors | null {
+  const isValid = /^\d{3,3}-\d{3,3}-\d{3,3}$/.test(control.value);
+  const message = {
+    telephoneNumber: {
+      message : 'The phone number must be valid (XXX-XXX-XXX, where X is a digit)'
+    }
+  };
+  return isValid ? null : message;
+}

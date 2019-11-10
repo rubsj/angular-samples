@@ -1,0 +1,41 @@
+<p>Simple form example uses formBuilder approach to build the form and [formControl] to refer to the control</p>
+<form [formGroup]="myForm" (ngSubmit)="register()" novalidate>
+  <p> Is "myForm" valid? {{myForm.valid}} </p>
+  <rj-show-errors [control]="myForm"></rj-show-errors>
+  <div>
+    <label>Name</label>
+    <input type="text" name="name" [formControl]="name"  >
+    <rj-show-errors [control]="name"></rj-show-errors>
+  </div>
+  <div>
+    <label>Birth Year</label>
+    <input type="text" name="birthYear" [formControl]="myForm.controls['birthYear']" rjBirthYear>
+    <rj-show-errors [control]="myForm.controls.birthYear"></rj-show-errors>
+  </div>
+  <div [formGroup]="myForm.controls['location']">
+    <div>
+      <label>Country</label>
+      <input type="text" name="country" [formControl]="myForm.controls.location.controls.country">
+    </div>
+    <div>
+      <label>City</label>
+      <input type="text" name="city" [formControl]="myForm.controls.location.controls.city">
+    </div>
+    <rj-show-errors [control]="myForm.controls.location"></rj-show-errors>
+  </div>
+  <div [formControl]="myForm.controls.phoneNumbers" >
+  <h3>Phone Numbers</h3>
+    <div *ngFor="let phoneControl of myForm.controls.phoneNumbers.controls; let i=index">
+      <label>Phone Number {{i +1}} </label>
+      <input type="text" [formControl]="phoneControl" name="phoneNumber[{{i+1}}]">
+      <rj-show-errors [control]="phoneControl"></rj-show-errors>
+      <button type="button" (click)="remove(i)">Remove</button>
+    </div>
+    <button type="button" (click)="add()">Add phone number</button>
+  </div>
+
+  <pre>{{myForm.value | json}}</pre>
+  <pre>{{myForm.valid | json}}</pre>
+  <button type="submit">Register</button>
+  <button type="button" (click)="printMyForm()">Print to console</button>
+</form>
