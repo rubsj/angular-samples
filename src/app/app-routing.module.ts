@@ -10,6 +10,7 @@ import {SimpleFormExample1Component} from 'app/template-form/simple-form-example
 import {RxSimpleFormExample1Component} from 'app/reactive-form/simple-form-example1/rx-simple-form-example1.component';
 import {NestableFormComponent} from 'app/form-common/nestable-form/nestable-form.component';
 import {RxSimpleFormExample2Component} from 'app/reactive-form/rx-simple-form-example2/rx-simple-form-example2.component';
+import {ChangeDetectionTodoComponent} from 'app/misc-concept/change-detection/todo/change-detection-todo.component';
 
 const routes: Routes = [
   {path : 'nestableFormDirectiveExample', component : NestableFormComponent},
@@ -20,6 +21,7 @@ const routes: Routes = [
   {path: 'templateCustomVal', component: TemplateCustomValidationComponent},
   {path: 'reactiveCustomVal', component: ReactiveCustomValidationComponent},
   {path: 'httpFirebaseSample', component: HttpConceptsComponent},
+  {path : 'changeDetectionTodo', component: ChangeDetectionTodoComponent},
   {path: 'menu', component: MenuComponent},
   {path: ' ', component: AppComponent, pathMatch: 'full'},
   {path: '**', redirectTo: 'menu'}

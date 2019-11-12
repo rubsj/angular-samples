@@ -16,7 +16,9 @@ for example, to use native HTML5 validation, add the `ngNoForm` and the `<form>`
 - In reactive forms, using `ngNoForm` is unnecessary because the `<form>` tags are inert. In that case, you would refrain from using the `formGroup` directive.
 
 ### Template Forms
-- reference - https://www.toptal.com/angular-js/angular-4-forms-validation
+- reference 
+  - https://www.toptal.com/angular-js/angular-4-forms-validation
+  - https://blog.ng-book.com/the-ultimate-guide-to-forms-in-angular-2/
 
 -When the `FormsModule` is imported, Angular automatically detects a form HTML element and attaches the `NgForm` component to that element (by the selector of the NgForm component)
 -by adding the `NgModel` directive, all inputs are registered to the `NgForm` component. 
@@ -53,6 +55,20 @@ There are two approaches to handling it as a work around see `phone numbers` for
 ### Reactive Forms
 
 
+### Change Detection
+- reference : https://blog.angular-university.io/how-does-angular-2-change-detection-really-work/
+- A zone is nothing more than an execution context that survives multiple Javascript VM execution turns.  It's a generic mechanism which we can use to add extra functionality to the browser.
+- Angular uses Zones internally to trigger change detection, but another possible use would be to do application profiling, or keeping track of long stack traces that run across multiple VM turns.
+- The following frequently used browser mechanisms are patched to support change detection:
+  - all browser events (click, mouseover, keyup, etc.)
+  - setTimeout() and setInterval()
+  - Ajax requests
+- By default, Angular Change Detection works by checking if the value of template expressions have changed. This is done for all components. 
+- By default, Angular does not do deep object comparison to detect changes, it only takes into account properties used by the template
+- When using OnPush detectors, then the framework will check an OnPush component when any of its input properties changes, when it fires an event, or when an Observable fires an event
+- but OnPush works by comparing references of the inputs of the component
+
+
 ### approaches for nesting forms
 -  `NgModelGroup`, `FormGroupName`, and the `FormArrayName` directives can be used as containers and used for nesting withing or across components `NestedFormExample1Component` demostrates this
 - CVA
@@ -60,6 +76,7 @@ There are two approaches to handling it as a work around see `phone numbers` for
 
 
 ## Concepts to look into and create samples
+
 - implement async validator
 - implement registerOnValidatorChange for custom validation
 

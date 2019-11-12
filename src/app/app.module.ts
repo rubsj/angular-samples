@@ -11,6 +11,7 @@ import {CustomCommonModule} from 'app/shared/custom-common.module';
 import {HttpConceptsModule} from 'app/http-concepts/http-concepts.module';
 import {CommonModule} from '@angular/common';
 import {NestableFormModule} from 'app/form-common/nestable-form/nestable-form.module';
+import {MiscConceptModule} from 'app/misc-concept/misc-concept.module';
 
 
 @NgModule({
@@ -28,6 +29,7 @@ import {NestableFormModule} from 'app/form-common/nestable-form/nestable-form.mo
     HttpConceptsModule,
     CommonModule,
     NestableFormModule,
+    MiscConceptModule
   ],
   providers: [],
   bootstrap: [AppComponent]
