@@ -67,7 +67,15 @@ There are two approaches to handling it as a work around see `phone numbers` for
 - By default, Angular does not do deep object comparison to detect changes, it only takes into account properties used by the template
 - When using OnPush detectors, then the framework will check an OnPush component when any of its input properties changes, when it fires an event, or when an Observable fires an event
 - but OnPush works by comparing references of the inputs of the component
-
+- the triggering of event handlers inside the component itself also causes the on push change detector to trigger, independently than if the inputs have changed or not.
+As we can see, if we take some precautions in the way we build our components, OnPush will work transparently with all sorts of component designs - components that receive data directly as inputs, that have observable inputs, or components that receive data only via constructor services, etc.
+An OnPush change detector gets triggered in a couple of other situations other than changes in component Input() references, it also gets triggered for example:
+-if a component event handler gets triggered
+-if an observable linked to the template via the async pipe emits a new value
+So if we remember to subscribe to any observables as much as possible using the async pipe at the level of the template, we get a couple of advantages:
+-we will run into much less change detection issue using OnPush
+-we will make it much easier to switch from the default change detection strategy to OnPush later if we need to
+- Immutable data and @Input() reference comparison is not the only way to achieve a high performant UI with OnPush: the reactive approach is also an option to use OnPush effectively
 
 ### approaches for nesting forms
 -  `NgModelGroup`, `FormGroupName`, and the `FormArrayName` directives can be used as containers and used for nesting withing or across components `NestedFormExample1Component` demostrates this
