@@ -1,0 +1,45 @@
+On Page load
+			called in the constructor of ChildHierarchyComponent
+	    called in the constructor of Child1Component
+			called in the ngOnInit of ChildHierarchyComponent
+			called in the ngDoCheck of ChildHierarchyComponent
+			called in the ngAfterContentInit of ChildHierarchyComponent
+			called in the ngAfterContentChecked of ChildHierarchyComponent
+	    called in the ngOnChanges of Child1Component
+	    called in the ngOnInit of Child1Component
+	    called in the ngDoCheck of Child1Component
+   	  called in the ngAfterContentInit of Child1Component
+     	called in the ngAfterContentChecked of Child1Component
+     	called in the ngAfterViewInit of Child1Component
+ 	  	called in the ngAfterViewChecked of Child1Component
+			called in the ngAfterViewInit of ChildHierarchyComponent
+			called in the ngAfterViewChecked of ChildHierarchyComponent
+
+After button click event in child which only change things in child
+    updateText method called in Child1Component
+		called in the ngDoCheck of ChildHierarchyComponent
+		called in the ngAfterContentChecked of ChildHierarchyComponent
+    called in the ngDoCheck of Child1Component
+    called in the ngAfterContentChecked of Child1Component
+    called in the ngAfterViewChecked of Child1Component
+		called in the ngAfterViewChecked of ChildHierarchyComponent
+
+After button click event in child which chnage things in child and emit event which is consumed by parent
+    updateTextWithEmitEvent method called in Child1Component
+		updateTextFromChild method called in ChildHierarchyComponent
+		called in the ngDoCheck of ChildHierarchyComponent
+		called in the ngAfterContentChecked of ChildHierarchyComponent
+    called in the ngDoCheck of Child1Component
+    called in the ngAfterContentChecked of Child1Component
+    called in the ngAfterViewChecked of Child1Component
+		called in the ngAfterViewChecked of ChildHierarchyComponent
+
+After button click event in parent which chnages things in child
+		updateText method called in ChildHierarchyComponent
+		called in the ngDoCheck of ChildHierarchyComponent
+		called in the ngAfterContentChecked of ChildHierarchyComponent
+    called in the ngOnChanges of Child1Component
+  	called in the ngDoCheck of Child1Component
+  	called in the ngAfterContentChecked of Child1Component
+    called in the ngAfterViewChecked of Child1Component
+		called in the ngAfterViewChecked of ChildHierarchyComponent

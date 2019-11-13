@@ -75,7 +75,42 @@ An OnPush change detector gets triggered in a couple of other situations other t
 So if we remember to subscribe to any observables as much as possible using the async pipe at the level of the template, we get a couple of advantages:
 -we will run into much less change detection issue using OnPush
 -we will make it much easier to switch from the default change detection strategy to OnPush later if we need to
-- Immutable data and @Input() reference comparison is not the only way to achieve a high performant UI with OnPush: the reactive approach is also an option to use OnPush effectively
+- Immutable data and @Input() reference comparison is not the only way to achieve a high performing UI with OnPush: the reactive approach is also an option to use OnPush effectively
+- - reference : https://blog.angularindepth.com/a-gentle-introduction-into-change-detection-in-angular-33f9ffff6f10
+- There are two main building blocks of change detection in Angular
+  - a component view
+  - the associated bindings
+- Every component in Angular has a template with HTML elements. When Angular creates the DOM nodes to render the contents of the template on the screen, it needs a place to store the references to those DOM nodes.
+   For that purpose, internally there’s a data structure known as View. It’s also used to store the reference to the component instance and the previous values of binding expressions.
+- As the compiler analyzes the template, it identifies properties of the DOM elements that may need to be updated during change detection. For each such property, the compiler creates a binding. 
+The binding defines the property name to update and the expression that Angular uses to obtain a new value.
+- 
+   
+- operations Angular performs during change detection and their order. it can be found in `checkAndUpdateView` method inside the @angular/core module. 
+ ```function checkAndUpdateView(view, ...) {
+       ...       
+       // update input bindings on child views (components) & directives,
+       // call NgOnInit, NgDoCheck and ngOnChanges hooks if needed
+       Services.updateDirectives(view, CheckType.CheckAndUpdate);
+       
+       // DOM updates, perform rendering for the current view (component)
+       Services.updateRenderer(view, CheckType.CheckAndUpdate);
+       
+       // run change detection on child views (components)
+       execComponentViewsAction(view, ViewAction.CheckAndUpdate);
+       
+       // call AfterViewChecked and AfterViewInit hooks
+       callLifecycleHooksChildrenFirst(…, NodeFlags.AfterViewChecked…);
+       ...
+   }
+   ```
+   - First, it updates the input bindings for the child component.
+   - Then it calls the OnInit, DoCheck, and OnChanges hooks, again, on the child component.
+   - Then Angular performs rendering for the current component. 
+   - And after that, it runs change detection for the child component.This means that it’ll basically repeat these operations on the child view. 
+   - And finally, it calls theAfterViewChecked and AfterViewInit hooks on the child component to let it know that it’s been checked.
+   - What we can notice here is that Angular calls the AfterViewChecked lifecycle hook for the child component after it’s processed the bindings of the parent component.
+     :note you can update parent's binding's directly in life cycle hooks but you can not throw event which then changes binding in parent. It is still to be fully fathomed as to why ..probably by updating binding directly you are altering object stealthily and angular is not able to detect it...
 
 ### approaches for nesting forms
 -  `NgModelGroup`, `FormGroupName`, and the `FormArrayName` directives can be used as containers and used for nesting withing or across components `NestedFormExample1Component` demostrates this

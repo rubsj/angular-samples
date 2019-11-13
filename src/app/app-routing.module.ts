@@ -18,6 +18,7 @@ import {NewsLetterHome4Component} from 'app/misc-concept/change-detection/news-l
 import {NewsLetterHome5Component} from 'app/misc-concept/change-detection/news-letter/on-push5/news-letter-home5.component';
 import {NewsLetterHome6Component} from 'app/misc-concept/change-detection/news-letter/on-push6/news-letter-home6.component';
 import {TimeComponent} from 'app/misc-concept/change-detection/time/time.component';
+import {ChildRootParentComponent} from 'app/misc-concept/change-detection/child-hierarchy/child-root-parent.component';
 
 const routes: Routes = [
   {path : 'nestableFormDirectiveExample', component : NestableFormComponent},
@@ -28,6 +29,7 @@ const routes: Routes = [
   {path: 'templateCustomVal', component: TemplateCustomValidationComponent},
   {path: 'reactiveCustomVal', component: ReactiveCustomValidationComponent},
   {path: 'httpFirebaseSample', component: HttpConceptsComponent},
+  {path: 'changeDetectionHierarchy' , component : ChildRootParentComponent},
   {path: 'changeDetectionTime', component: TimeComponent},
   {path : 'changeDetectionTodo', component: ChangeDetectionTodoComponent},
   {path : 'changeDetectionNewsLetter1' , component: NewsLetterHome1Component},

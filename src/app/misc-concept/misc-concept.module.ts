@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {CommonModule, DatePipe} from '@angular/common';
 import { ChangeDetectionTodoComponent } from 'app/misc-concept/change-detection/todo/change-detection-todo.component';
 import {TodoItemComponent} from 'app/misc-concept/change-detection/todo/todo-item.component';
 import {TodoListComponent} from 'app/misc-concept/change-detection/todo/todo-list.component';
@@ -16,6 +16,9 @@ import {NewsLetter4Component} from 'app/misc-concept/change-detection/news-lette
 import {NewsLetterHome6Component} from 'app/misc-concept/change-detection/news-letter/on-push6/news-letter-home6.component';
 import {TimeChildComponent} from 'app/misc-concept/change-detection/time/child.component';
 import {TimeComponent} from 'app/misc-concept/change-detection/time/time.component';
+import { ChildRootParentComponent } from 'app/misc-concept/change-detection/child-hierarchy/child-root-parent.component';
+import {Child1Component} from 'app/misc-concept/change-detection/child-hierarchy/child1.component';
+import {ChildOfChild1Component} from 'app/misc-concept/change-detection/child-hierarchy/child-of-child1.component';
 
 
 
@@ -36,7 +39,10 @@ import {TimeComponent} from 'app/misc-concept/change-detection/time/time.compone
     NewsLetter4Component,
     NewsLetterHome6Component,
     TimeComponent,
-    TimeChildComponent
+    TimeChildComponent,
+    ChildRootParentComponent,
+    Child1Component,
+    ChildOfChild1Component
   ],
   imports: [
     CommonModule,
@@ -50,6 +56,8 @@ import {TimeComponent} from 'app/misc-concept/change-detection/time/time.compone
     NewsLetterHome4Component,
     NewsLetterHome5Component,
     NewsLetterHome6Component,
-    TimeComponent]
+    TimeComponent,
+  ],
+    providers : [DatePipe],
 })
 export class MiscConceptModule { }

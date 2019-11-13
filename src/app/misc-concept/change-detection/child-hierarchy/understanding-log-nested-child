@@ -1,0 +1,90 @@
+On Page load
+child-root-parent.component.ts:40			called in the constructor of ChildRootParentComponent
+child1.component.ts:54						called in the constructor of Child1Component
+child-of-child1.component.ts:45				called in the constructor of ChildOfChild1Component
+child-root-parent.component.ts:48			called in the ngOnInit of ChildRootParentComponent
+child-root-parent.component.ts:52			called in the ngDoCheck of ChildRootParentComponent
+child-root-parent.component.ts:57			called in the ngAfterContentInit of ChildRootParentComponent
+child-root-parent.component.ts:61			called in the ngAfterContentChecked of ChildRootParentComponent
+child1.component.ts:58						called in the ngOnChanges of Child1Component
+child1.component.ts:62						called in the ngOnInit of Child1Component
+child1.component.ts:66						called in the ngDoCheck of Child1Component
+child1.component.ts:71						called in the ngAfterContentInit of Child1Component
+child1.component.ts:75						called in the ngAfterContentChecked of Child1Component
+child-of-child1.component.ts:49				called in the ngOnChanges of ChildOfChild1Component
+child-of-child1.component.ts:53				called in the ngOnInit of ChildOfChild1Component
+child-of-child1.component.ts:57				called in the ngDoCheck of ChildOfChild1Component
+child-of-child1.component.ts:62				called in the ngAfterContentInit of ChildOfChild1Component
+child-of-child1.component.ts:66				called in the ngAfterContentChecked of ChildOfChild1Component
+child-of-child1.component.ts:70				called in the ngAfterViewInit of ChildOfChild1Component
+child-of-child1.component.ts:74				called in the ngAfterViewChecked of ChildOfChild1Component
+child1.component.ts:79						called in the ngAfterViewInit of Child1Component
+child1.component.ts:83						called in the ngAfterViewChecked of Child1Component
+child-root-parent.component.ts:65			called in the ngAfterViewInit of ChildRootParentComponent
+child-root-parent.component.ts:69			called in the ngAfterViewChecked of ChildRootParentComponent
+
+After button click event in child which only change things in child and its child
+child1.component.ts:36						updateText method called in Child1Component
+child-root-parent.component.ts:52			called in the ngDoCheck of ChildRootParentComponent
+child-root-parent.component.ts:61			called in the ngAfterContentChecked of ChildRootParentComponent
+child1.component.ts:66						called in the ngDoCheck of Child1Component
+child1.component.ts:75						called in the ngAfterContentChecked of Child1Component
+child-of-child1.component.ts:49				called in the ngOnChanges of ChildOfChild1Component
+child-of-child1.component.ts:57				called in the ngDoCheck of ChildOfChild1Component
+child-of-child1.component.ts:66				called in the ngAfterContentChecked of ChildOfChild1Component
+child-of-child1.component.ts:74				called in the ngAfterViewChecked of ChildOfChild1Component
+child1.component.ts:83						called in the ngAfterViewChecked of Child1Component
+child-root-parent.component.ts:69			called in the ngAfterViewChecked of ChildRootParentComponent
+
+After button click event in child which chnage things in child and sends the change in property to its child and emit event which is consumed by parent
+child1.component.ts:47						updateTextWithEmitEvent method called in Child1Component
+child-root-parent.component.ts:29			updateTextFromChild method called in ChildRootParentComponent
+child-root-parent.component.ts:52			called in the ngDoCheck of ChildRootParentComponent
+child-root-parent.component.ts:61			called in the ngAfterContentChecked of ChildRootParentComponent
+child1.component.ts:66						called in the ngDoCheck of Child1Component
+child1.component.ts:75						called in the ngAfterContentChecked of Child1Component
+child-of-child1.component.ts:49				called in the ngOnChanges of ChildOfChild1Component
+child-of-child1.component.ts:57				called in the ngDoCheck of ChildOfChild1Component
+child-of-child1.component.ts:66				called in the ngAfterContentChecked of ChildOfChild1Component
+child-of-child1.component.ts:74				called in the ngAfterViewChecked of ChildOfChild1Component
+child1.component.ts:83						called in the ngAfterViewChecked of Child1Component
+child-root-parent.component.ts:69			called in the ngAfterViewChecked of ChildRootParentComponent
+
+After button click event in parent which chnages things in child
+child-root-parent.component.ts:34			updateText method called in ChildRootParentComponent
+child-root-parent.component.ts:52			called in the ngDoCheck of ChildRootParentComponent
+child-root-parent.component.ts:61			called in the ngAfterContentChecked of ChildRootParentComponent
+child1.component.ts:58						called in the ngOnChanges of Child1Component
+child1.component.ts:66						called in the ngDoCheck of Child1Component
+child1.component.ts:75						called in the ngAfterContentChecked of Child1Component
+child-of-child1.component.ts:57				called in the ngDoCheck of ChildOfChild1Component
+child-of-child1.component.ts:66				called in the ngAfterContentChecked of ChildOfChild1Component
+child-of-child1.component.ts:74				called in the ngAfterViewChecked of ChildOfChild1Component
+child1.component.ts:83						called in the ngAfterViewChecked of Child1Component
+child-root-parent.component.ts:69			called in the ngAfterViewChecked of ChildRootParentComponent
+
+After button click event in childofchild which chnage things in childofchild only
+child-of-child1.component.ts:32				updateText method called in ChildOfChild1Component
+child-root-parent.component.ts:52			called in the ngDoCheck of ChildRootParentComponent
+child-root-parent.component.ts:61			called in the ngAfterContentChecked of ChildRootParentComponent
+child1.component.ts:66						called in the ngDoCheck of Child1Component
+child1.component.ts:75						called in the ngAfterContentChecked of Child1Component
+child-of-child1.component.ts:57				called in the ngDoCheck of ChildOfChild1Component
+child-of-child1.component.ts:66				called in the ngAfterContentChecked of ChildOfChild1Component
+child-of-child1.component.ts:74				called in the ngAfterViewChecked of ChildOfChild1Component
+child1.component.ts:83						called in the ngAfterViewChecked of Child1Component
+child-root-parent.component.ts:69			called in the ngAfterViewChecked of ChildRootParentComponent
+
+After button click event in childofchild which emits event that is passed on to root
+child-of-child1.component.ts:38				updateTextWithEmitEvent method called in ChildOfChild1Component
+child1.component.ts:42						updateTextFromChild method called in Child1Component
+child-root-parent.component.ts:29			updateTextFromChild method called in ChildRootParentComponent
+child-root-parent.component.ts:52			called in the ngDoCheck of ChildRootParentComponent
+child-root-parent.component.ts:61			called in the ngAfterContentChecked of ChildRootParentComponent
+child1.component.ts:66						called in the ngDoCheck of Child1Component
+child1.component.ts:75						called in the ngAfterContentChecked of Child1Component
+child-of-child1.component.ts:57				called in the ngDoCheck of ChildOfChild1Component
+child-of-child1.component.ts:66				called in the ngAfterContentChecked of ChildOfChild1Component
+child-of-child1.component.ts:74				called in the ngAfterViewChecked of ChildOfChild1Component
+child1.component.ts:83						called in the ngAfterViewChecked of Child1Component
+child-root-parent.component.ts:69			called in the ngAfterViewChecked of ChildRootParentComponent
