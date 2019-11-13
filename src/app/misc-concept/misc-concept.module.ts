@@ -14,6 +14,8 @@ import {Newsletter1Component} from 'app/misc-concept/change-detection/news-lette
 import {Newsletter3Component} from 'app/misc-concept/change-detection/news-letter/on-push5/news-letter3.component';
 import {NewsLetter4Component} from 'app/misc-concept/change-detection/news-letter/on-push6/news-letter4.component';
 import {NewsLetterHome6Component} from 'app/misc-concept/change-detection/news-letter/on-push6/news-letter-home6.component';
+import {TimeChildComponent} from 'app/misc-concept/change-detection/time/child.component';
+import {TimeComponent} from 'app/misc-concept/change-detection/time/time.component';
 
 
 
@@ -32,7 +34,9 @@ import {NewsLetterHome6Component} from 'app/misc-concept/change-detection/news-l
     Newsletter2Component,
     Newsletter3Component,
     NewsLetter4Component,
-    NewsLetterHome6Component
+    NewsLetterHome6Component,
+    TimeComponent,
+    TimeChildComponent
   ],
   imports: [
     CommonModule,
@@ -45,6 +49,7 @@ import {NewsLetterHome6Component} from 'app/misc-concept/change-detection/news-l
     NewsLetterHome3Component,
     NewsLetterHome4Component,
     NewsLetterHome5Component,
-    NewsLetterHome6Component]
+    NewsLetterHome6Component,
+    TimeComponent]
 })
 export class MiscConceptModule { }

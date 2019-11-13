@@ -1,0 +1,22 @@
+<h3>Change detection is triggerred at : <span [textContent]="timeGivingError | date:'hh:mm:ss:SSS' "></span></h3>
+<p>Notice this time setting is throwing expression changed after check error</p>
+<h3>
+  Change detection is triggerred at for time set in constructor :  <span [textContent]="time | date : 'hh:mm:ss:SSS'"> </span>
+</h3>
+<p>Notice once a time is set it does not get updated even after button click</p>
+
+<h3>
+  Change detection is triggerred at using timeinterval running out of ngZone :
+  <span [textContent]="intervalTime | date : 'hh:mm:ss:SSS'"> </span>
+</h3>
+<p>Now we’re constantly updating the time, but we’re doing so asynchronously and outside of the Angular zone.
+  This guarantees that during change detection and the following check the getter time returns the same value.
+  And when Angular reads the time value during the next change detection cycle, the value will be updated and
+  the changes will be reflected on the screen.</p>
+<button (click)="0">Trigger Change Detection</button>
+
+<p [textContent]="text"></p>
+<p>
+  <app-time-child></app-time-child>
+</p>
+

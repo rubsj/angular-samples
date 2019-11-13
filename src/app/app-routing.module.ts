@@ -17,6 +17,7 @@ import {NewsLetterHome3Component} from 'app/misc-concept/change-detection/news-l
 import {NewsLetterHome4Component} from 'app/misc-concept/change-detection/news-letter/on-push4/news-letter-home4.component';
 import {NewsLetterHome5Component} from 'app/misc-concept/change-detection/news-letter/on-push5/news-letter-home5.component';
 import {NewsLetterHome6Component} from 'app/misc-concept/change-detection/news-letter/on-push6/news-letter-home6.component';
+import {TimeComponent} from 'app/misc-concept/change-detection/time/time.component';
 
 const routes: Routes = [
   {path : 'nestableFormDirectiveExample', component : NestableFormComponent},
@@ -27,6 +28,7 @@ const routes: Routes = [
   {path: 'templateCustomVal', component: TemplateCustomValidationComponent},
   {path: 'reactiveCustomVal', component: ReactiveCustomValidationComponent},
   {path: 'httpFirebaseSample', component: HttpConceptsComponent},
+  {path: 'changeDetectionTime', component: TimeComponent},
   {path : 'changeDetectionTodo', component: ChangeDetectionTodoComponent},
   {path : 'changeDetectionNewsLetter1' , component: NewsLetterHome1Component},
   {path : 'changeDetectionNewsLetter2' , component: NewsLetterHome2Component},
