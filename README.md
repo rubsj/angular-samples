@@ -1,5 +1,9 @@
 
 ## Concepts
+
+       ``
+-        
+
 ### General Angular
 - we first must import the browser module as it “provides services that are essential to launch and run a browser app.”
 
@@ -55,6 +59,21 @@ There are two approaches to handling it as a work around see `phone numbers` for
 ### Reactive Forms
 
 
+### View as a core concept
+- Angular application is a tree of components However, under the hood angular uses a low-level abstraction called view.
+- There is a direct relationship between a view and a component — one view is associated with one component and vice verse
+- A view holds a reference to the associated component class instance in the component property.
+- All operations like property checks and DOM updates are performed on views
+- Properties of elements in a View can change, but the structure (number and order) of elements in a View cannot. 
+- Changing the structure of Elements can only be done by inserting, moving or removing nested Views via a ViewContainerRef. Each View can contain many View Containers.
+- there’s no separate object for change detection and View is what change detection runs on
+- Each view has a link to its child views through nodes property and hence can perform actions on child views.
+- Each view has a state, which plays very important role because based on its value Angular decides whether to run change detection for the view and all its children or skip it.  e.g.
+  - FirstCheck
+  - ChecksEnabled
+  - Errored
+  - Destroyed
+
 ### Change Detection
 - reference : https://blog.angular-university.io/how-does-angular-2-change-detection-really-work/
 - A zone is nothing more than an execution context that survives multiple Javascript VM execution turns.  It's a generic mechanism which we can use to add extra functionality to the browser.
@@ -84,8 +103,87 @@ So if we remember to subscribe to any observables as much as possible using the 
    For that purpose, internally there’s a data structure known as View. It’s also used to store the reference to the component instance and the previous values of binding expressions.
 - As the compiler analyzes the template, it identifies properties of the DOM elements that may need to be updated during change detection. For each such property, the compiler creates a binding. 
 The binding defines the property name to update and the expression that Angular uses to obtain a new value.
-- 
-   
+- Each view has a state, which plays very important role because based on its value Angular decides whether to run change detection for the view and all its children or skip it.  e.g.
+  - FirstCheck
+  - ChecksEnabled
+  - Errored
+  - Destroyed
+- Change detection is skipped for the view and its child views if ChecksEnabled is false or view is in the Errored or Destroyed state.  
+- By default, all views are initialized with ChecksEnabled unless ChangeDetectionStrategy.OnPush is used.
+- The states can be combined, for example, a view can have both FirstCheck and ChecksEnabled flags set.
+- When an asynchronous event takes place, Angular triggers change detection on its top-most ViewRef, which after running change detection for itself runs change detection for its child views.
+- This viewRef is what you can inject into a component constructor using ChangeDetectorRef token
+``export class AppComponent {
+       constructor(cd: ChangeDetectorRef) { ... } 
+- The main logic responsible for running change detection for a view resides in checkAndUpdateView function. Most of its functionality performs operations on child component views.
+  This function is called recursively for each component starting from the host component. It means that a child component becomes parent component on the next call as a recursive tree unfolds.
+- When this function triggered for a particular view it does the following operations in the specified order:
+  - sets ViewState.firstCheck to true if a view is checked for the first time and to false if it was already checked before
+  - checks and updates input properties on a child component/directive instance  
+  - updates child view change detection state (part of change detection strategy implementation)
+  - runs change detection for the embedded views (repeats the steps in the list)
+  - calls OnChanges lifecycle hook on a child component if bindings changed
+  - calls OnInit and ngDoCheck on a child component (OnInit is called only during first check)     
+  - updates ContentChildren query list on a child view component instance
+  - calls AfterContentInit and AfterContentChecked lifecycle hooks on child component instance (AfterContentInit is called only during first check)
+  - updates DOM interpolations for the current view if properties on current view component instance changed
+  - runs change detection for a child view (repeats the steps in this list)
+  - updates ViewChildren query list on the current view component instance
+  - calls AfterViewInit and AfterViewChecked lifecycle hooks on child component instance (AfterViewInit is called only during first check)
+  - disables checks for the current view (part of change detection strategy implementation
+- The first thing is that onChanges lifecycle hook is triggered on a child component before the child view is checked and it will be triggered even if changed detection for the child view will be skipped. 
+- The second thing is that DOM for a view is updated as part of a change detection mechanism while the view being checked. This means that if a component is not checked, the DOM is not updated even if component properties used in a template change. The templates are rendered before the first check. What I refer to as DOM update is actually interpolation update. 
+  So if you have <span>some {{name}}</span>, the DOM element span will be rendered before the first check. During the check only {{name}} part will be rendered. 
+- Another interesting observation is that state of a child component view can be changed during change detection. I mentioned earlier that all component views are initialized with ChecksEnabled by default, but for all components that use OnPush strategy change detection is disabled after the first check 
+- So if you have the following components hierarchy: A -> B -> C, here is the order of hooks calls and bindings updates:
+  A: AfterContentInit
+  A: AfterContentChecked
+  A: Update bindings
+      B: AfterContentInit
+      B: AfterContentChecked
+      B: Update bindings
+          C: AfterContentInit
+          C: AfterContentChecked
+          C: Update bindings
+          C: AfterViewInit
+          C: AfterViewChecked
+      B: AfterViewInit
+      B: AfterViewChecked
+  A: AfterViewInit
+  A: AfterViewChecked
+-  ``class ChangeDetectorRef {
+       markForCheck() : void
+       detach() : void
+       reattach() : void
+       
+       detectChanges() : void
+       checkNoChanges() : void
+     }`` 
+     Component hierarchy
+       AppComponent (aProp , bProp) -> AComponent -> AA Component
+                                     |              |
+                                     |             -> AC Component
+                                      ->BComponent -> BB Component
+                                                   -> BCComponent
+     - detach
+       - The first method that allows us manipulating the state is detach which simply disables checks for the current view   
+       - if you detach a component all its children will get detached too i.e.  all its child components will not be checked as well.
+       - since no change detection will be performed for the  branch components, DOM in their templates will not be updated as well 
+     - reattach
+       - As shown in the first part of the article OnChanges lifecycle hook will still be triggered for A`Component` if input binding `aProp` changes on the `AppComponent`.
+       - The DOM won't be updated for component because of ngONChanges trigger unless the component is reattached
+       - note that OnChanges hook is only triggered for the top-most component in the disabled branch, not for every component in the disabled branch.
+       - The reattach method enables checks for the current component only, but if changed detection is not enabled for its parent component, it will have no effect. 
+         It means that reattach method is only useful for top-most component in the disabled branch. 
+     - markForCheck
+       - We need a way to enable check for all parent components up to root component. And there is a method for it markForCheck:   
+       - it simply iterates upwards and enables checks for every parent component up to the root. 
+     - detectChanges
+       - There is a way to run change detection once for the current component and all its children. This is done using detectChanges method.
+       - This method runs change detection for the current component view regardless of its state  
+     - checkNoChanges
+       - This last method available on the change detector ensures that there will be no changes done on the current run of change detection.   
+
 - operations Angular performs during change detection and their order. it can be found in `checkAndUpdateView` method inside the @angular/core module. 
  ```function checkAndUpdateView(view, ...) {
        ...       
