@@ -1,0 +1,27 @@
+<h3>Slider USage using input/output approach</h3>
+<app-ngx-jquery-slider [value]="sliderValue" (valueChange)="onSliderValueChange($event)"></app-ngx-jquery-slider>
+<br> <br>
+
+<input type="text" [value]="sliderValue" (change)="setSliderValue($event)">
+
+<span>Current Slider Value : {{sliderValue}}</span>
+
+<h3>Slider Usage using CVA approach</h3>
+<div>
+  <h4>Using Reactive Forms</h4>
+  <app-ngx-jquery-slider-cva [formControl]="sliderCtrl"></app-ngx-jquery-slider-cva>
+  <br><br>
+
+  <input type="text" [value]="sliderCtrl.value" (change)="updateSlider($event)">
+  <span>Current Slider Value is {{sliderCtrl.value}}</span>
+</div>
+<div>
+  <h4>Using template driven form</h4>
+  <app-ngx-jquery-slider-cva [ngModel]="tempalteSliderVal" #sliderModel='ngModel'></app-ngx-jquery-slider-cva>
+  <br><br>
+  <input type="text" [value]="sliderModel.value" (change)="updateSlider($event)">
+  <span>Current slider value is {{sliderModel.value}}</span>
+
+
+</div>
+

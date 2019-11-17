@@ -19,6 +19,7 @@ import {NewsLetterHome5Component} from 'app/misc-concept/change-detection/news-l
 import {NewsLetterHome6Component} from 'app/misc-concept/change-detection/news-letter/on-push6/news-letter-home6.component';
 import {TimeComponent} from 'app/misc-concept/change-detection/time/time.component';
 import {ChildRootParentComponent} from 'app/misc-concept/change-detection/child-hierarchy/child-root-parent.component';
+import {JquerySliderUsageComponent} from 'app/misc-concept/cva/ngx-jquery-slider/jquery-slider-usage.component';
 
 const routes: Routes = [
   {path : 'nestableFormDirectiveExample', component : NestableFormComponent},
@@ -38,6 +39,7 @@ const routes: Routes = [
   {path : 'changeDetectionNewsLetter4' , component: NewsLetterHome4Component},
   {path : 'changeDetectionNewsLetter5' , component: NewsLetterHome5Component},
   {path : 'changeDetectionNewsLetter6' , component: NewsLetterHome6Component},
+  {path : 'jquerySliderUsage', component : JquerySliderUsageComponent},
   {path: 'menu', component: MenuComponent},
   {path: ' ', component: AppComponent, pathMatch: 'full'},
   {path: '**', redirectTo: 'menu'}

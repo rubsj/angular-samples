@@ -9,7 +9,7 @@ import { NewsLetterHome3Component } from 'app/misc-concept/change-detection/news
 import { NewsLetterHome4Component } from 'app/misc-concept/change-detection/news-letter/on-push4/news-letter-home4.component';
 import { NewsLetterHome5Component } from 'app/misc-concept/change-detection/news-letter/on-push5/news-letter-home5.component';
 import {Newsletter2Component} from 'app/misc-concept/change-detection/news-letter/on-push4/news-letter2.component';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {Newsletter1Component} from 'app/misc-concept/change-detection/news-letter/news-letter1.component';
 import {Newsletter3Component} from 'app/misc-concept/change-detection/news-letter/on-push5/news-letter3.component';
 import {NewsLetter4Component} from 'app/misc-concept/change-detection/news-letter/on-push6/news-letter4.component';
@@ -19,6 +19,9 @@ import {TimeComponent} from 'app/misc-concept/change-detection/time/time.compone
 import { ChildRootParentComponent } from 'app/misc-concept/change-detection/child-hierarchy/child-root-parent.component';
 import {Child1Component} from 'app/misc-concept/change-detection/child-hierarchy/child1.component';
 import {ChildOfChild1Component} from 'app/misc-concept/change-detection/child-hierarchy/child-of-child1.component';
+import { NgxJquerySliderApproach1Component } from 'app/misc-concept/cva/ngx-jquery-slider/ngx-jquery-slider-approach1.component';
+import {JquerySliderUsageComponent} from 'app/misc-concept/cva/ngx-jquery-slider/jquery-slider-usage.component';
+import {NgxJquerySliderApproach2Component} from 'app/misc-concept/cva/ngx-jquery-slider/ngx-jquery-slider-approach2.component';
 
 
 
@@ -42,11 +45,15 @@ import {ChildOfChild1Component} from 'app/misc-concept/change-detection/child-hi
     TimeChildComponent,
     ChildRootParentComponent,
     Child1Component,
-    ChildOfChild1Component
+    ChildOfChild1Component,
+    NgxJquerySliderApproach1Component,
+    NgxJquerySliderApproach2Component,
+    JquerySliderUsageComponent
   ],
   imports: [
     CommonModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   exports : [
     ChangeDetectionTodoComponent,

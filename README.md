@@ -18,6 +18,7 @@
 - In template driven forms, all `<form>` tags are automatically tagged as `NgForm`.  To import the `FormsModule` but skip its usage in some forms,
 for example, to use native HTML5 validation, add the `ngNoForm` and the `<form>` tags won't create an `NgForm` directive. 
 - In reactive forms, using `ngNoForm` is unnecessary because the `<form>` tags are inert. In that case, you would refrain from using the `formGroup` directive.
+- when you work with forms, a FormControl is always created regardless of whether you use template driven or reactive forms
 
 ### Template Forms
 - reference 
@@ -54,9 +55,11 @@ There are two approaches to handling it as a work around see `phone numbers` for
      ```
   - The second way is to use a view query by adding the @ViewChild decorator to a property of the component
      ```@ViewChild('myForm')
-        private myForm: NgForm;```
--         
+        private myForm: NgForm;```   
+- If you use template driven approach, the `FormControl` is created implicitly by the `NgModel` directive
+        
 ### Reactive Forms
+- With the reactive approach, you create a `control` yourself explicitly and use the `formControl` or the `formControlNam`e directive to bind it to a native control
 
 
 ### View as a core concept
@@ -215,12 +218,39 @@ The binding defines the property name to update and the expression that Angular 
 - CVA
 - `NestableFormDirective` created in nestable-form.directive.ts
 
+### Control Value Accessor
+- A ControlValueAccessor acts as a bridge between the Angular forms API and a native element in the DOM.
+- Any component or directive can be turned into `ControlValueAccessor` by implementing the `ControlValueAccessor` interface and registering itself as an `NG_VALUE_ACCESSOR` provider.
+- ``interface ControlValueAccessor {
+      writeValue(obj: any): void
+      registerOnChange(fn: any): void
+      registerOnTouched(fn: any): void
+      setDisabledState?(isDisabled: boolean): void;
+    }``
+    - The writeValue method is used by formControl to set the value to the native form control.
+    - The registerOnChange method is used by formControl to register a callback that is expected to be triggered every time the native form control is updated.
+    - It is your responsibility to pass the updated value to this callback so that the value of respective Angular form control is updated.
+    - The registerOnTouched method is used to indicate that a user interacted with a control.
+    - `setdisabledState` is by the forms API when the control status changes to or from 'DISABLED'. Depending on the status, it enables or disables the appropriate DOM element.
+- Angular implements default value accessors for all standard native form elements:    
+  +------------------------------------+----------------------+
+  |              Accessor              |     Form Element     |
+  +------------------------------------+----------------------+
+  | DefaultValueAccessor               | input, textarea      |
+  | CheckboxControlValueAccessor       | input[type=checkbox] |
+  | NumberValueAccessor                | input[type=number]   |
+  | RadioControlValueAccessor          | input[type=radio]    |
+  | RangeValueAccessor                 | input[type=range]    |
+  | SelectControlValueAccessor         | select               |
+  | SelectMultipleControlValueAccessor | select[multiple]     |
+- All form directives inject value accessors using the token NG_VALUE_ACCESSOR and then select a suitable accessor. 
+  If there is an accessor which is not built-in or DefaultValueAccessor it is selected. 
+  Otherwise Angular picks the default accessor if it’s provided. And there can be no more than one custom accessor defined for an element.
+-     
 
 ## Concepts to look into and create samples
-
 - implement async validator
 - implement registerOnValidatorChange for custom validation
-
 
 
 # AngularSamples
