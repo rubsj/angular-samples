@@ -1,0 +1,29 @@
+
+<form #myForm='ngForm'>
+  <div>
+    <h3>List of friends is created using template driven form</h3>
+  <app-person-cva
+    [(ngModel)]="person"
+    *ngFor="let person of people.friends;index as i ; trackBy:trackByIndex"
+    name="friend-{{i}}"
+    (change)="onPersonChange()"
+  ></app-person-cva>
+  </div>
+  <button (click)="addFriend()">Add friend</button>
+</form>
+
+<form [formGroup]="familyGroup">
+  <div >
+    <h3>List of family created using reactive form using controlArray</h3>
+    <app-person-cva
+      *ngFor="let person of familyGroup.controls.familyArray.controls; index as i; trackBy:trackByIndex"
+      [formControl]="person"
+      (change)="onFamilyChange(i)"
+    ></app-person-cva>
+  </div>
+  <button (click)="addFamily()">Add Family</button>
+</form>
+<pre>Frinds form : {{form.value | json}}</pre>
+<pre>Family Form : {{familyGroup.value | json}}</pre>
+<pre>friends : {{people | json}}</pre>
+

@@ -22,6 +22,8 @@ import {ChildOfChild1Component} from 'app/misc-concept/change-detection/child-hi
 import { NgxJquerySliderApproach1Component } from 'app/misc-concept/cva/ngx-jquery-slider/ngx-jquery-slider-approach1.component';
 import {JquerySliderUsageComponent} from 'app/misc-concept/cva/ngx-jquery-slider/jquery-slider-usage.component';
 import {NgxJquerySliderApproach2Component} from 'app/misc-concept/cva/ngx-jquery-slider/ngx-jquery-slider-approach2.component';
+import { PersonComponent } from './cva/person/person.component';
+import {PersonCvaComponent} from 'app/misc-concept/cva/person/person-cva.component';
 
 
 
@@ -48,7 +50,9 @@ import {NgxJquerySliderApproach2Component} from 'app/misc-concept/cva/ngx-jquery
     ChildOfChild1Component,
     NgxJquerySliderApproach1Component,
     NgxJquerySliderApproach2Component,
-    JquerySliderUsageComponent
+    JquerySliderUsageComponent,
+    PersonComponent,
+    PersonCvaComponent
   ],
   imports: [
     CommonModule,
