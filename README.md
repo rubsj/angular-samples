@@ -212,7 +212,69 @@ The binding defines the property name to update and the expression that Angular 
    - And finally, it calls theAfterViewChecked and AfterViewInit hooks on the child component to let it know that it’s been checked.
    - What we can notice here is that Angular calls the AfterViewChecked lifecycle hook for the child component after it’s processed the bindings of the parent component.
      :note you can update parent's binding's directly in life cycle hooks but you can not throw event which then changes binding in parent. It is still to be fully fathomed as to why ..probably by updating binding directly you are altering object stealthily and angular is not able to detect it...
-
+ -  DOM updates is part of Angular’s change detection mechanism which mostly consists of three major operations:
+    - DOM updates
+    - child component `input` bindings updatees
+    - query list updates
+ -  Change detection mechanism is implemented as depth-first internally, but involves calling `ngDoCheck` lifecycle hooks on sibling components first.    
+ -  When is `ngDoCheck` triggered   
+    - Detect and act upon changes that Angular can’t or won’t detect on its own. Called during every change detection run, immediately after ngOnChanges() and ngOnInit().
+    - You can see that ngDoCheck is called on the child component when the parent component is being checked. 
+    - ``ComponentA
+            ComponentB
+                ComponentC``
+      So when Angular runs change detection the order of operations is the following:
+      ``Checking A component:
+          - update B input bindings
+          - call NgDoCheck on the B component
+          - update DOM interpolations for component A
+         
+         Checking B component:
+            - update C input bindings
+            - call NgDoCheck on the C component
+            - update DOM interpolations for component B
+         
+           Checking C component:
+              - update DOM interpolations for component C``
+        Now suppose we implement onPush strategy for the B component.The order of operations is the following:
+        ``Checking A component:
+            - update B input bindings
+            - call NgDoCheck on the B component
+            - update DOM interpolations for component A
+           if (bindings changed) -> checking B component:
+              - update C input bindings
+              - call NgDoCheck on the C component
+              - update DOM interpolations for component B
+           
+             Checking C component:
+                - update DOM interpolations for component C``       
+         - So with the introduction of the OnPush strategy we see the small condition if (bindings changed) -> checking B component is added before B component is checked. 
+           If this condition doesn’t hold, you can see that Angular won’t execute the operations under checking B component.      
+           However, the NgDoCheck on the B component is still triggered even though the B component will not be checked. 
+           It’s important to understand that the hook is triggered only for the top level B component with OnPush strategy, and not triggered for its children — C component in our case.
+  - Why do we need `ngDoCheck`?
+    - You probably know that Angular tracks binding inputs by object reference. 
+      It means that if an object reference hasn’t changed the binding change is not detected and change detection is not executed for a component that uses OnPush strategy.              
+    - If we want to track an object or an array mutations we need to manually do that. 
+      And if discover the change we need to let Angular know so that it will run change detection for a component even though the object reference hasn't changed.
+    - Luckily, we can use the ngDoCheck lifecycle hook to check for object mutation and notify Angular using markForCheck method.
+- Angular 2 separates updating the application model and reflecting the state of the model in the view into two distinct phases.
+  The developer is responsible for updating the application model. 
+  Angular, by means of change detection, is responsible for reflecting the state of the model in the view.
+- the parent property update using output binding mechanism: is not performed as part of change detection.
+  i.e. `<a-comp (updateObj)="value = $event"></a-comp>`
+  where value is being updated for parent through child's event emitter will not be done by change detection
+  It’s executed during the first phase of updating the application model before the change detection starts.
+- unidirectional data flow defines the architecture of bindings updates that are processed during change detection.  
+- there is no code in change detection mechanism in Angular that propagates a child property updates to its parent.
+- The output bindings processing is performed outside of change detection and hence doesn’t transform unidirectional data flow into two-way data binding.
+- During change detection Angular performs checks for each component which consists of the following operations performed in the specified order:
+  - update bound properties for all child components/directives
+  - call ngOnInit, OnChanges and ngDoCheck lifecycle hooks on all child components/directives
+  - update DOM for the current component
+  - run change detection for a child component
+  - call ngAfterViewInit lifecycle hook for all child components/directives
+     
 ### approaches for nesting forms
 -  `NgModelGroup`, `FormGroupName`, and the `FormArrayName` directives can be used as containers and used for nesting withing or across components `NestedFormExample1Component` demostrates this
 - CVA
@@ -246,37 +308,33 @@ The binding defines the property name to update and the expression that Angular 
 - All form directives inject value accessors using the token NG_VALUE_ACCESSOR and then select a suitable accessor. 
   If there is an accessor which is not built-in or DefaultValueAccessor it is selected. 
   Otherwise Angular picks the default accessor if it’s provided. And there can be no more than one custom accessor defined for an element.
--     
 
+### Unit Testing
+- The following list provides a walkthrough of the import statements you’ll need for your tests:
+  - `import { DebugElement } from '@angular/core'`;—You can use `DebugElement` to inspect an element during testing. 
+  You can think of it as the native `HTMLElement` with additional methods and properties that can be useful for debugging elements.
+  - import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
+  - `ComponentFixture`—You can find this class in the `@angular/core` module. You can use it to create a fixture that you then can use for debugging.
+  - TestBed—You use this class to set up and configure your tests. 
+    Because you use TestBed anytime you want to write a unit test for components, directives, and services, it’s one of the most important utilities that Angular provides for testing.
+  - fakeAsync—Using fakeAsync ensure that all asynchronous tasks are completed before executing the assertions.  
+  - `import { By } from '@angular/platform-browser'`;—By is a class included in the `@angular/platform-browser` module that you can use to select DOM elements.
+  - import { NoopAnimationsModule } from '@angular/platform-browser/animations';—You use the NoopAnimationsModule class to mock animations, which allows tests to run quickly without waiting for the animations to finish.
+  - import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';—BrowserDynamicTestingModule is a module that helps bootstrap the browser to be used for testing.
+  - The TestBed class has a method called configureTestingModule. You can probably guess its purpose, which is to configure the testing module. 
+    It’s much like the NgModule class that’s included in the app.module.ts file, which you can find at src/app. The only difference is that you only use configureTestingModule in tests.
+  -  It takes an object that’s in the format of a TestModuleMetadata type alias
+  - overrideModule ?? look into it
+  - The fixture variable stores the component-like object from the TestBed.createComponent method that you can use for debugging and testing,
+  - The component variable holds a component that you get from your fixture using the componentInstance property.
+  
+  
+     
 ## Concepts to look into and create samples
 - implement async validator
-- implement registerOnValidatorChange for custom validation
-
-
-# AngularSamples
-
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.2.0.
-
-## Development server
-
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+- implement registerOnValidatorChange for custom validation- 
+- https://stackblitz.com/edit/depth-or-breadth-first for cdr
+- dynamic component https://hackernoon.com/here-is-what-you-need-to-know-about-dynamic-components-in-angular-ac1e96167f9e
+- Here is how to get ViewContainerRef before @ViewChild query is evaluated https://blog.angularindepth.com/here-is-how-to-get-viewcontainerref-before-viewchild-query-is-evaluated-f649e51315fb
+- https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0#8ce5
+- Angular Forms Several Ways: Reactive, Nested, Across Routes https://dev.to/bitovi/angular-forms-several-ways-reactive-nested-across-routes-42g3
