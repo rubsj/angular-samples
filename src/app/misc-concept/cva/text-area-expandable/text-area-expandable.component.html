@@ -1,0 +1,23 @@
+<div class="divGroup">
+  <form #myForm='ngForm'>
+  <p>Text area component using template can be :</p>
+  <app-text-area-expanded-cva [ngModel]="initText" name="templateCvaTA" [disabled]="isDisabled" ></app-text-area-expanded-cva>
+    <button (click)="disableTmpTextArea()">Toggle Disable TextArea</button>
+  </form>
+    <pre>Form's value is : {{myForm.value | json}}</pre>
+</div>
+<div class="divGroup">
+  <form [formGroup]="cvaFormGroup">
+    <p>Text area component using reactive form can be :</p>
+    <app-text-area-expanded-cva formControlName="cvaTextArea" name="rxCvaTA"></app-text-area-expanded-cva>
+    <button (click)="disableRxTextArea()">Toggle Disable TextArea</button>
+  </form>
+  <pre>Form's value is : {{cvaFormGroup.value | json}}</pre>
+</div>
+<div class="divGroup">
+   <p>Text area component created using input/output approach  can be :</p>
+   <app-text-area-expanded-event [Value]="initText" [disabledState]="isEventDisabled" (emitVal)="valFromEventComp($event)"></app-text-area-expanded-event>
+   <button (click)="disableTextAreaEvent()">Toggle Disable TextArea</button>
+   <pre>Component's value is : {{textFromEvent}}</pre>
+</div>
+

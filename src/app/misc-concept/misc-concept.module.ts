@@ -24,6 +24,11 @@ import {JquerySliderUsageComponent} from 'app/misc-concept/cva/ngx-jquery-slider
 import {NgxJquerySliderApproach2Component} from 'app/misc-concept/cva/ngx-jquery-slider/ngx-jquery-slider-approach2.component';
 import { PersonComponent } from './cva/person/person.component';
 import {PersonCvaComponent} from 'app/misc-concept/cva/person/person-cva.component';
+import { StarRaterComponent } from './cva/star-rater/star-rater.component';
+import {StarRaterCvaComponent} from 'app/misc-concept/cva/star-rater/star-rater-cva.component';
+import { TextAreaExpandableComponent } from './cva/text-area-expandable/text-area-expandable.component';
+import {TextAreaExpandedCvaComponent} from 'app/misc-concept/cva/text-area-expandable/text-area-expanded-cva.component';
+import {TextAreaExpandedEventComponent} from 'app/misc-concept/cva/text-area-expandable/text-area-expanded-event.component';
 
 
 
@@ -52,7 +57,12 @@ import {PersonCvaComponent} from 'app/misc-concept/cva/person/person-cva.compone
     NgxJquerySliderApproach2Component,
     JquerySliderUsageComponent,
     PersonComponent,
-    PersonCvaComponent
+    PersonCvaComponent,
+    StarRaterComponent,
+    StarRaterCvaComponent,
+    TextAreaExpandableComponent,
+    TextAreaExpandedCvaComponent,
+    TextAreaExpandedEventComponent
   ],
   imports: [
     CommonModule,
