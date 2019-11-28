@@ -328,8 +328,12 @@ The binding defines the property name to update and the expression that Angular 
   - The fixture variable stores the component-like object from the TestBed.createComponent method that you can use for debugging and testing,
   - The component variable holds a component that you get from your fixture using the componentInstance property.
   
-### Angular ng-template, ng-container and ngTemplateOutlet 
--  the ng-template directive represents an Angular template: this means that the content of this tag will contain part of a template, 
+### Angular ng-template, ng-container , ng-content and ngTemplateOutlet 
+- reference 
+  - https://blog.angular-university.io/angular-ng-template-ng-container-ngtemplateoutlet/
+  - https://www.freecodecamp.org/news/everything-you-need-to-know-about-ng-template-ng-content-ng-container-and-ngtemplateoutlet-4b7b51223691/
+  - https://medium.com/claritydesignsystem/ng-content-the-hidden-docs-96a29d70d11b
+-  the `ng-template` directive represents an Angular template: this means that the content of this tag will contain part of a template, 
    that can be then be composed together with other templates in order to form the final component template.
 -  its not possible to apply two structural directives to the same element
    ```<div class="lesson" *ngIf="lessons" 
@@ -367,9 +371,15 @@ The binding defines the property name to update and the expression that Angular 
   The value passed to this directive can be any expression that evaluates into a template reference
 - all `ng-template` instances have access also to the same context on which they are embedded.  
   But each template can also define its own set of input variables. Actually, each template has associated a context object containing all the template-specific input variables.
-- The core directives ng-container, ng-template and ngTemplateOutlet all combine together to allow us to create highly dynamical and customizable components.
+- The core directives `ng-container`, `ng-template` and `ngTemplateOutlet` all combine together to allow us to create highly dynamical and customizable components.
 - We can even change completely the look and feel of a component based on input templates, and we can define a template and instantiate on multiple places of the application.
--   
+- `<ng-content>` : They are used to create configurable components. This means the components can be configured depending on the needs of its user. This is well known as Content Projection. 
+- Instead of every content projected inside a single `<ng-content>`, you can also control how the contents will get projected with the `select` attribute of `<ng-content>`. 
+  It takes an element selector to decide which content to project inside a particular `<ng-content>`.  
+- Sometimes you want different children of your wrapper to be projected in different parts of your template. 
+  To handle this, `<ng-content>` supports a `select` attribute that lets you project specific content in specific places. 
+  This attribute takes a CSS selector (my-element, .my-class, [my-attribute], …) to match the children you want. 
+- If you include an `ng-content` without a `select` attribute, it will serve as a catch-all and will receive all children that did not match any of the other `ng-content` elements.    
      
 ## Concepts to look into and create samples
 - implement async validator

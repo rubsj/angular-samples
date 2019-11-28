@@ -31,6 +31,8 @@ import {TextAreaExpandedCvaComponent} from 'app/misc-concept/cva/text-area-expan
 import {TextAreaExpandedEventComponent} from 'app/misc-concept/cva/text-area-expandable/text-area-expanded-event.component';
 import { NgTemplateExampleComponent } from './templates/ng-template-example/ng-template-example.component';
 import {TabContainerComponent} from 'app/misc-concept/templates/ng-template-example/tab-container.component';
+import { NgContentExampleComponent } from './templates/ng-content-example/ng-content-example.component';
+import {ProjectContentExampleComponent} from 'app/misc-concept/templates/ng-content-example/project-content-example.component';
 
 
 
@@ -66,7 +68,9 @@ import {TabContainerComponent} from 'app/misc-concept/templates/ng-template-exam
     TextAreaExpandedCvaComponent,
     TextAreaExpandedEventComponent,
     NgTemplateExampleComponent,
-    TabContainerComponent
+    TabContainerComponent,
+    NgContentExampleComponent,
+    ProjectContentExampleComponent,
   ],
   imports: [
     CommonModule,
