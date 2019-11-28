@@ -328,7 +328,48 @@ The binding defines the property name to update and the expression that Angular 
   - The fixture variable stores the component-like object from the TestBed.createComponent method that you can use for debugging and testing,
   - The component variable holds a component that you get from your fixture using the componentInstance property.
   
-  
+### Angular ng-template, ng-container and ngTemplateOutlet 
+-  the ng-template directive represents an Angular template: this means that the content of this tag will contain part of a template, 
+   that can be then be composed together with other templates in order to form the final component template.
+-  its not possible to apply two structural directives to the same element
+   ```<div class="lesson" *ngIf="lessons" 
+            *ngFor="let lesson of lessons">
+         <div class="lesson-detail">
+             {{lesson | json}}
+         </div>
+     </div>
+      ```
+      
+     above code won't work to make it work it will need to be turned to
+     ```<div *ngIf="lessons">
+           <div class="lesson" *ngFor="let lesson of lessons">
+               <div class="lesson-detail">
+                   {{lesson | json}}
+               </div>
+           </div>
+       </div>
+      ```
+    - In this example, we have moved the ngIf directive to an outer wrapping div, but in order for this to work we have to create that extra div element
+    - is there a way to apply a structural directive to a section of the page without having to create an extra element?
+    - Yes and that is exactly what the ng-container structural directive allows us to do!
+    ```  <ng-container *ngIf="lessons">
+      <div class="lesson" *ngFor="let lesson of lessons">
+          <div class="lesson-detail">
+              {{lesson | json}}
+          </div>
+      </div>
+      </ng-container>
+     ```
+- the `ng-container` directive provides us with an element that we can attach a structural directive to a section of the page, without having to create an extra element just for that.
+- `ng-container` directive can also provide a placeholder for injecting a template dynamically into the page.      
+- We can also take the template itself and instantiate it anywhere on the page, using the `ngTemplateOutlet` directive
+- We could add as many `ngTemplateOutlet` tags to the page as we would like, and instantiate a number of different templates.
+  The value passed to this directive can be any expression that evaluates into a template reference
+- all `ng-template` instances have access also to the same context on which they are embedded.  
+  But each template can also define its own set of input variables. Actually, each template has associated a context object containing all the template-specific input variables.
+- The core directives ng-container, ng-template and ngTemplateOutlet all combine together to allow us to create highly dynamical and customizable components.
+- We can even change completely the look and feel of a component based on input templates, and we can define a template and instantiate on multiple places of the application.
+-   
      
 ## Concepts to look into and create samples
 - implement async validator

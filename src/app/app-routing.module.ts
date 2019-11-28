@@ -22,6 +22,7 @@ import {ChildRootParentComponent} from 'app/misc-concept/change-detection/child-
 import {JquerySliderUsageComponent} from 'app/misc-concept/cva/ngx-jquery-slider/jquery-slider-usage.component';
 import {PersonComponent} from 'app/misc-concept/cva/person/person.component';
 import {TextAreaExpandableComponent} from 'app/misc-concept/cva/text-area-expandable/text-area-expandable.component';
+import {NgTemplateExampleComponent} from 'app/misc-concept/templates/ng-template-example/ng-template-example.component';
 
 const routes: Routes = [
   {path : 'nestableFormDirectiveExample', component : NestableFormComponent},
@@ -44,6 +45,7 @@ const routes: Routes = [
   {path : 'jquerySliderUsage', component : JquerySliderUsageComponent},
   {path: 'personCVA', component: PersonComponent},
   {path: 'textAreaCVA', component: TextAreaExpandableComponent},
+  {path: 'ngTemplateSample1' , component : NgTemplateExampleComponent},
   {path: 'menu', component: MenuComponent},
   {path: ' ', component: AppComponent, pathMatch: 'full'},
   {path: '**', redirectTo: 'menu'}

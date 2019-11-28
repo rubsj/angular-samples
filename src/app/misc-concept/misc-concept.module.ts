@@ -29,6 +29,8 @@ import {StarRaterCvaComponent} from 'app/misc-concept/cva/star-rater/star-rater-
 import { TextAreaExpandableComponent } from './cva/text-area-expandable/text-area-expandable.component';
 import {TextAreaExpandedCvaComponent} from 'app/misc-concept/cva/text-area-expandable/text-area-expanded-cva.component';
 import {TextAreaExpandedEventComponent} from 'app/misc-concept/cva/text-area-expandable/text-area-expanded-event.component';
+import { NgTemplateExampleComponent } from './templates/ng-template-example/ng-template-example.component';
+import {TabContainerComponent} from 'app/misc-concept/templates/ng-template-example/tab-container.component';
 
 
 
@@ -62,7 +64,9 @@ import {TextAreaExpandedEventComponent} from 'app/misc-concept/cva/text-area-exp
     StarRaterCvaComponent,
     TextAreaExpandableComponent,
     TextAreaExpandedCvaComponent,
-    TextAreaExpandedEventComponent
+    TextAreaExpandedEventComponent,
+    NgTemplateExampleComponent,
+    TabContainerComponent
   ],
   imports: [
     CommonModule,

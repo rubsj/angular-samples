@@ -1,0 +1,37 @@
+<div class="container">
+  <p>ng-template-example works!</p>
+  <ng-template #estimatedLessons let-lessonCount="estimate" let-totalLessons="total">
+    <div>Approximately {{lessonCount}} lessons of total {{totalLessons}}</div>
+  </ng-template>
+  <ng-container *ngTemplateOutlet="estimatedLessons;context:ctx">
+
+  </ng-container>
+</div>
+<div class="container">
+  <p>ng-template-example from angular docs</p>
+  <ng-template #greet><span>Hello</span></ng-template>
+  <ng-template #eng let-name><span>Hello {{name}}!</span></ng-template>
+  <ng-template #svk let-person="localSk"><span>Ahoj {{person}} !</span></ng-template>
+
+  <ng-container *ngTemplateOutlet="greet" ></ng-container>
+  <hr>
+  <ng-container *ngTemplateOutlet="eng; context:myContext"></ng-container>
+  <hr>
+  <ng-container *ngTemplateOutlet="svk; context:myContext"></ng-container>
+
+</div>
+<div class="container">
+  <p>Child tab-container called by passing template defaultTabButtons from parent </p>
+  <ng-template #defaultTabButtons>
+    <button class="tab-button" (click)="login()">{{loginText}}</button>
+    <button class="tab-button" (click)="signUp()">{{signUpText}}</button>
+  </ng-template>
+  <app-tab-container [headerTemplate]="defaultTabButtons"></app-tab-container>
+  <hr>
+  <p>Tab container called without passing the template from parent</p>
+  <app-tab-container></app-tab-container>
+</div>
+
+
+
+
