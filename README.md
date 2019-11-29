@@ -379,7 +379,10 @@ The binding defines the property name to update and the expression that Angular 
 - Sometimes you want different children of your wrapper to be projected in different parts of your template. 
   To handle this, `<ng-content>` supports a `select` attribute that lets you project specific content in specific places. 
   This attribute takes a CSS selector (my-element, .my-class, [my-attribute], …) to match the children you want. 
-- If you include an `ng-content` without a `select` attribute, it will serve as a catch-all and will receive all children that did not match any of the other `ng-content` elements.    
+- If you include an `ng-content` without a `select` attribute, it will serve as a catch-all and will receive all children that did not match any of the other `ng-content` elements.
+- `<ng-content>` does not “produce” content, it simply projects existing content, Because of this the lifecycle of the projected content is bound to where it is declared, not where it is displayed.
+-  To let the wrapper control the instantiation of its children, we need to give it a template for the content, rather than the content itself.
+- This can be done in two ways: using the `<ng-template>` element around our content, or using a structural directive with the “star” syntax, like *myContent.  
      
 ## Concepts to look into and create samples
 - implement async validator

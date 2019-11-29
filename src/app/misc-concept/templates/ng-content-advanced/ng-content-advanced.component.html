@@ -1,0 +1,45 @@
+<p>This sample explores all ways to use ng-content</p>
+<div class="box">
+  <p>Let’s just check these work as expected, by putting three counters inside the wrapper</p>
+  <app-wrapper-basic>
+    <app-counter></app-counter>
+    <app-counter></app-counter>
+    <app-counter></app-counter>
+  </app-wrapper-basic>
+</div>
+<div class="box">
+  <p>Sometimes you want different children of your wrapper to be projected in different parts of your template.
+    To handle this, ng-content supports a select attribute that lets you project specific content in specific places.
+    This attribute takes a CSS selector (my-element, .my-class, [my-attribute], …)</p>
+  <app-wrapper-targeted-projection>
+    <span>This is not a counter</span>
+    <app-counter></app-counter>
+  </app-wrapper-targeted-projection>
+  <p>The counter is correctly projected into the second, blue box, while the child that is not a Counter ends up in the
+    catch-all red box.</p>
+  <p>Note that the targeted ng-content takes precedence over the catch-all, even if it’s after it in the template.</p>
+</div>
+<div class="box">
+  <p>Sometimes your inner component is hidden within another larger component.
+    Sometimes you just need to wrap it in an extra container to apply ngIf or ngSwitch.</p>
+  <p>we have to use the ngProjectAs attribute, which can be put on absolutely any element and lets it “disguise” any
+    element for
+    content projection purposes. It takes the exact same kind of selectors as the select attribute on ng-content</p>
+  <app-wrapper-targeted-projection>
+    <span><app-counter></app-counter> that is  wrapped but not projected using ngProjectAs</span>
+    <ng-container ngProjectAs="app-counter">
+      <app-counter></app-counter>
+    </ng-container>
+  </app-wrapper-targeted-projection>
+</div>
+<div class="box">
+  <p>To let the wrapper control the instantiation of its children, we need to give it a template for the content, rather
+    than the content itself.</p>
+  <p>The wrapper cannot use ng-content anymore, since it receives a template. It needs to access the template with
+    @ContentChild, and use ngTemplateOutlet to display it</p>
+  <app-wrapper-template>
+    <ng-template>
+      <app-counter></app-counter>
+    </ng-template>
+  </app-wrapper-template>
+</div>

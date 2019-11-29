@@ -24,6 +24,7 @@ import {PersonComponent} from 'app/misc-concept/cva/person/person.component';
 import {TextAreaExpandableComponent} from 'app/misc-concept/cva/text-area-expandable/text-area-expandable.component';
 import {NgTemplateExampleComponent} from 'app/misc-concept/templates/ng-template-example/ng-template-example.component';
 import {NgContentExampleComponent} from 'app/misc-concept/templates/ng-content-example/ng-content-example.component';
+import {NgContentAdvancedComponent} from 'app/misc-concept/templates/ng-content-advanced/ng-content-advanced.component';
 
 const routes: Routes = [
   {path : 'nestableFormDirectiveExample', component : NestableFormComponent},
@@ -48,6 +49,7 @@ const routes: Routes = [
   {path: 'textAreaCVA', component: TextAreaExpandableComponent},
   {path: 'ngTemplateSample1', component: NgTemplateExampleComponent},
   {path: 'ngContentSample1', component: NgContentExampleComponent},
+  {path: 'ngContentSample2', component: NgContentAdvancedComponent},
   {path: 'menu', component: MenuComponent},
   {path: ' ', component: AppComponent, pathMatch: 'full'},
   {path: '**', redirectTo: 'menu'}

@@ -1,0 +1,9 @@
+.box {
+  border: 2px solid green;
+  padding: 5px;
+  margin-bottom: 5px;
+}
+
+.box.red {
+  border-color: red;
+}

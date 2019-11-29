@@ -33,6 +33,11 @@ import { NgTemplateExampleComponent } from './templates/ng-template-example/ng-t
 import {TabContainerComponent} from 'app/misc-concept/templates/ng-template-example/tab-container.component';
 import { NgContentExampleComponent } from './templates/ng-content-example/ng-content-example.component';
 import {ProjectContentExampleComponent} from 'app/misc-concept/templates/ng-content-example/project-content-example.component';
+import { NgContentAdvancedComponent } from './templates/ng-content-advanced/ng-content-advanced.component';
+import {ContentCounterComponent} from 'app/misc-concept/templates/ng-content-advanced/content-counter.component';
+import {ContentWrapperBasicComponent} from 'app/misc-concept/templates/ng-content-advanced/content-wrapper-basic.component';
+import {ContentWrapperTargetedProjectionComponent} from 'app/misc-concept/templates/ng-content-advanced/content-wrapper-targeted-projection.component';
+import {ContentWrapperTemplateComponent} from 'app/misc-concept/templates/ng-content-advanced/content-wrapper-template.component';
 
 
 
@@ -71,6 +76,11 @@ import {ProjectContentExampleComponent} from 'app/misc-concept/templates/ng-cont
     TabContainerComponent,
     NgContentExampleComponent,
     ProjectContentExampleComponent,
+    NgContentAdvancedComponent,
+    ContentCounterComponent,
+    ContentWrapperBasicComponent,
+    ContentWrapperTargetedProjectionComponent,
+    ContentWrapperTemplateComponent
   ],
   imports: [
     CommonModule,
