@@ -6,6 +6,14 @@
 
 ### General Angular
 - we first must import the browser module as it “provides services that are essential to launch and run a browser app.”
+- A workspace is a set of Angular applications and libraries. The angular.json file at the root level of an Angular workspace provides workspace-wide and project-specific (application or library) configuration defaults for build and development tools.
+- in Angular terminology, a project can be both an application or a library. Both are stored in the projects folder of the workspace and configured in the central angular.json file.
+- One thing to note is that you cannot specify the style preprocessor when generating a library. And there is no configuration related to it in the workspace configuration (angular.json file) for the libraries. The result is that you must specify the style each time you generate a component in a library, for example with the command ng generate component my-component --style=scss --project=tools.
+
+
+### steps to create multiple project worksapce
+- reference https://octoperf.com/blog/2019/08/22/kraken-angular-workspace-multi-application-project/
+
 
 ### Forms general concepts
 - each input element must have the name attribute to be properly identified within the form.
