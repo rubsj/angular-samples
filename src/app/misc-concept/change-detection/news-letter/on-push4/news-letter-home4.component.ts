@@ -1,5 +1,7 @@
 import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 import {UserService} from 'app/misc-concept/change-detection/news-letter/user-service';
+import { Observable } from 'rxjs';
+import { User } from '../model';
 
 @Component({
   selector: 'app-news-letter-home4',
@@ -8,14 +10,16 @@ import {UserService} from 'app/misc-concept/change-detection/news-letter/user-se
     <p>But now we would like to change a bit the design of our application. Let's say that instead of subscribing to the user$ observable directly at the level of the home component, we would like to pass this observable to the component tree</p>
     <p>This reference will always be the same as we emit new values of this observable.</p>
     <p>The user$ observable is being subscribed to via the async pipe, so Angular knows that the emission of values in that observable will impact the template.</p>
-      <app-news-letter2 [user$]="userService.user$" (subscribe)="subscribe($event)"></app-news-letter2>
+      <app-news-letter2 [user$]="user$" (subscribe)="subscribe($event)"></app-news-letter2>
     <span *ngIf="emailReceived">received email to subscribe to {{emailReceived}} <br></span>
     <button (click)="changeUserName()">Change User Name</button>
   `
 })
 export class NewsLetterHome4Component {
   emailReceived: string;
+  user$: Observable<User>;
   constructor(private userService: UserService) {
+    this.user$ = this.userService.user$;
   }
 
   subscribe(email: string) {

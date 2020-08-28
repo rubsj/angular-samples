@@ -7,7 +7,7 @@ import {UserService} from 'app/misc-concept/change-detection/news-letter/user-se
   selector: 'app-news-letter4',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <fieldset *ngIf="userService.user$ | async as user else loading">
+    <fieldset *ngIf="user$ | async as user else loading">
 
       <legend>Newsletter</legend>
 
@@ -24,10 +24,11 @@ import {UserService} from 'app/misc-concept/change-detection/news-letter/user-se
 })
 export class NewsLetter4Component {
 
-
+  user$: Observable<any>;
   @Output() subscribe = new EventEmitter<string>();
 
   constructor(private userService: UserService) {
+    this.user$ = this.userService.user$;
   }
 
   subscribeToNewsletter(email: string) {

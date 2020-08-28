@@ -49,6 +49,10 @@ export class PersonComponent implements OnInit{
     }
   }
 
+  get familyArray(){
+    return <FormArray> this.familyGroup.controls.familyArray;
+  }
+
   addFriend() {
     const person: Person = {};
     this.people.friends.push(person);
@@ -75,4 +79,5 @@ export class PersonComponent implements OnInit{
     console.log(`changed array at index ${index} with control value : ${familyControl.value}`);
     this.onPersonChange();
   }
+
 }

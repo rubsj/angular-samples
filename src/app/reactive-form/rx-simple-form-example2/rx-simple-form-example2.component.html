@@ -15,17 +15,17 @@
   <div [formGroup]="myForm.controls['location']">
     <div>
       <label>Country</label>
-      <input type="text" name="country" [formControl]="myForm.controls.location.controls.country">
+      <input type="text" name="country" [formControl]="myForm.controls['location']['controls'].country">
     </div>
     <div>
       <label>City</label>
-      <input type="text" name="city" [formControl]="myForm.controls.location.controls.city">
+      <input type="text" name="city" [formControl]="myForm.controls['location']['controls'].city">
     </div>
     <rj-show-errors [control]="myForm.controls.location"></rj-show-errors>
   </div>
   <div [formControl]="myForm.controls.phoneNumbers" >
   <h3>Phone Numbers</h3>
-    <div *ngFor="let phoneControl of myForm.controls.phoneNumbers.controls; let i=index">
+    <div *ngFor="let phoneControl of myForm.controls.phoneNumbers['controls']; let i=index">
       <label>Phone Number {{i +1}} </label>
       <input type="text" [formControl]="phoneControl" name="phoneNumber[{{i+1}}]">
       <rj-show-errors [control]="phoneControl"></rj-show-errors>

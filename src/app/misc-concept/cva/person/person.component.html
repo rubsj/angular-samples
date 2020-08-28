@@ -3,8 +3,8 @@
   <div>
     <h3>List of friends is created using template driven form</h3>
   <app-person-cva
-    [(ngModel)]="person"
     *ngFor="let person of people.friends;index as i ; trackBy:trackByIndex"
+    [(ngModel)]="people.friends[i]"
     name="friend-{{i}}"
     (change)="onPersonChange()"
   ></app-person-cva>
@@ -16,7 +16,7 @@
   <div >
     <h3>List of family created using reactive form using controlArray</h3>
     <app-person-cva
-      *ngFor="let person of familyGroup.controls.familyArray.controls; index as i; trackBy:trackByIndex"
+      *ngFor="let person of familyArray.controls; index as i; trackBy:trackByIndex"
       [formControl]="person"
       (change)="onFamilyChange(i)"
     ></app-person-cva>

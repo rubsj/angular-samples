@@ -7,7 +7,7 @@ import {FormArray, FormControl, FormGroup, NgForm} from '@angular/forms';
   styleUrls: ['./rx-simple-form-example1.component.css']
 })
 export class RxSimpleFormExample1Component implements OnInit {
-  private myForm: FormGroup;
+  myForm: FormGroup;
 
   constructor() {
   }
@@ -22,6 +22,10 @@ export class RxSimpleFormExample1Component implements OnInit {
       }),
       phoneNumbers: new FormArray([new FormControl('')]),
     });
+  }
+
+  get phoneNumbers(): FormArray {
+    return this.myForm.get('phoneNumbers') as FormArray;
   }
 
   printMyForm() {

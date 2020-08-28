@@ -24,7 +24,7 @@
   </div>
   <div formArrayName="phoneNumbers">
     <h3>Phone Numbers</h3>
-    <div *ngFor="let phoneNumberControl of myForm.controls.phoneNumbers.controls; let i=index">
+    <div *ngFor="let phoneNumberControl of phoneNumbers.controls; let i=index">
       <label >Phone Number {{i+1}}</label>
       <input type="text" name="phoneNumber[{{i}}]" [formControlName]="i" appTelephoneFormatValidator>
       <rj-show-errors [control]="phoneNumberControl"></rj-show-errors>

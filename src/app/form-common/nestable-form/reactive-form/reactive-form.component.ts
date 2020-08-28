@@ -6,7 +6,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
   templateUrl: './reactive-form.component.html',
 })
 export class ReactiveFormComponent implements OnInit {
-  private sampleForm: FormGroup;
+  sampleForm: FormGroup;
 
   constructor(private formBuilder: FormBuilder) {
   }

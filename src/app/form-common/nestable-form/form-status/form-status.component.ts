@@ -7,8 +7,8 @@ import {Component, Input} from '@angular/core';
 
 })
 export class FormStatusComponent {
-  @Input() private isFormValid: boolean;
+  @Input() isFormValid: boolean;
 
-  @Input() private formName: string;
+  @Input() formName: string;
 
 }
