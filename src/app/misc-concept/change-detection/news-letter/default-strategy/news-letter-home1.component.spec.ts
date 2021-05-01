@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { NewsLetterHome1Component } from 'app/misc-concept/change-detection/news-letter/default-strategy/news-letter-home1.component';
 
@@ -6,7 +6,7 @@ describe('NewsLetterHome1Component', () => {
   let component: NewsLetterHome1Component;
   let fixture: ComponentFixture<NewsLetterHome1Component>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ NewsLetterHome1Component ]
     })

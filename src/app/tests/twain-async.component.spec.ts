@@ -1,5 +1,5 @@
 import {defer, of, throwError} from 'rxjs';
-import {async, ComponentFixture, fakeAsync, TestBed, tick} from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, TestBed, tick, waitForAsync } from '@angular/core/testing';
 import {TwainAsyncComponent} from 'app/tests/twain-async.component';
 import {TwainService} from 'app/tests/twain.service';
 

@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { NestedFormExample1Component } from './nested-form-example1.component';
 
@@ -6,7 +6,7 @@ describe('NestedFormExample1Component', () => {
   let component: NestedFormExample1Component;
   let fixture: ComponentFixture<NestedFormExample1Component>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ NestedFormExample1Component ]
     })

@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { CustomValidationComponent } from './custom-validation.component';
 
@@ -6,7 +6,7 @@ describe('CustomValidationComponent', () => {
   let component: CustomValidationComponent;
   let fixture: ComponentFixture<CustomValidationComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ CustomValidationComponent ]
     })
